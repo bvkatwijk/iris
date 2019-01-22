@@ -23,5 +23,4 @@ class IdentifierParser(val input: ParserInput) extends Parser {
   def pack: Rule0 = rule { oneOrMore(CharPredicate.LowerAlpha) }
 
   def OWS: Rule0 = rule { zeroOrMore(' ') }
-
 }
