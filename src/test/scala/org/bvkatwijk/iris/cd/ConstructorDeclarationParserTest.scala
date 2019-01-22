@@ -7,7 +7,6 @@ import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Constructor
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 
 class ConstructorDeclarationParserTest extends FreeSpec with Matchers {
-
   "constructor" - {
     "single parameter" - {
       "(a: B)" in { ConstructorDeclarationParser { "(a: B)" } should be(Right(Constructor(Seq(Parameter("a", QualifiedIdentifier("B")))))) }
