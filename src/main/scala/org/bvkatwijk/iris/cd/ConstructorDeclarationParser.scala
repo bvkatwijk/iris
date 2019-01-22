@@ -6,7 +6,7 @@ import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 
 object ConstructorDeclarationParser extends {
-  case class Constructor(value: Parameter)
+  case class Constructor(parameters: Seq[Parameter])
   case class Parameter(name: String, typeValue: QualifiedIdentifier)
 
   def apply(input: ParserInput): Either[CompileError, Constructor] = {
@@ -24,7 +24,7 @@ class ConstructorDeclarationParser(val input: ParserInput) extends Parser {
   import ConstructorDeclarationParser.Parameter;
   import IdentifierParser.QualifiedIdentifier;
 
-  def constructorDefinition: Rule1[Constructor] = rule { '(' ~ parameter ~ ')' ~> (Constructor) }
+  def constructorDefinition: Rule1[Constructor] = rule { '(' ~ oneOrMore(parameter).separatedBy(',' ~ OWS) ~ ')' ~> (Constructor) }
 
   def parameter: Rule1[Parameter] = rule { name ~ ':' ~ OWS ~ identifier ~> Parameter }
 
