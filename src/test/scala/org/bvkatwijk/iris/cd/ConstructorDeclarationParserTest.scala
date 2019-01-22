@@ -21,6 +21,11 @@ class ConstructorDeclarationParserTest extends FreeSpec with Matchers {
           Parameter("a", QualifiedIdentifier("B")),
           Parameter("c", QualifiedIdentifier("D"))))))
       }
+      "(one: Type, other: OtherType)" in {
+        ConstructorDeclarationParser { "(one: Type, other: OtherType)" } should be(Right(Constructor(Seq(
+          Parameter("one", QualifiedIdentifier("Type")),
+          Parameter("other", QualifiedIdentifier("OtherType"))))))
+      }
     }
   }
 }
