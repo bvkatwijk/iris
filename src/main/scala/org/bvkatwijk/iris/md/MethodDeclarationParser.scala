@@ -29,7 +29,7 @@ class MethodDeclarationParser(val input: ParserInput) extends Parser {
 
   def parameter: Rule1[Parameter] = rule { name ~ ':' ~ OWS ~ identifier ~> Parameter }
 
-  def name: Rule1[String] = rule { capture(oneOrMore(CharPredicate.LowerAlpha)) }
+  def name: Rule1[String] = rule { capture(oneOrMore(CharPredicate.LowerAlpha) ~ zeroOrMore(CharPredicate.AlphaNum)) }
 
   def identifier: Rule1[QualifiedIdentifier] = rule { runSubParser { i => new IdentifierParser(i).qualifiedIdentifier } }
 
