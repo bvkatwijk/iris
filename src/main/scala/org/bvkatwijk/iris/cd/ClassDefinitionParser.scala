@@ -6,7 +6,6 @@ import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 
 object ClassDefinitionParser {
-
   case class ClassDefinition(value: QualifiedIdentifier)
 
   def apply(input: ParserInput): Either[ParseError, ClassDefinition] = {
