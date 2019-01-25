@@ -25,6 +25,7 @@ class IdentifierParserTest extends ParseTest {
   "identifier" - {
     "A" in identifier("A")
     "B" in identifier("B")
+    "can't be lowercase" in { IdentifierParser.identifier("a") should be('left) }
   }
 
   def qualifiedIdentifier(value: String) = IdentifierParser(value) should be(Right(QualifiedIdentifier(value)))
