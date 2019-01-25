@@ -1,6 +1,7 @@
 *.class
 *.log
 
+# IDE Specific Files
 .cache*
 .classpath
 .project
@@ -8,3 +9,5 @@
 project/
 target/
 /bin/
+.idea
+*.iml
