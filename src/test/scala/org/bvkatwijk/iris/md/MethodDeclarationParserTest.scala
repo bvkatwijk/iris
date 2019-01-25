@@ -27,8 +27,8 @@ class MethodDeclarationParserTest extends FreeSpec with Matchers {
       "can be long" in { (MethodDeclarationParser { "def veryveryveryveryveryvery(): B = {}" }).right.get.name should be("veryveryveryveryveryvery") }
       "can be mixedCase" in { (MethodDeclarationParser { "def mixedCase(): B = {}" }).right.get.name should be("mixedCase") }
       "can contain numbers" in { (MethodDeclarationParser { "def contains1Number(): B = {}" }).right.get.name should be("contains1Number") }
-      "can't  start with uppercase letter" in { MethodDeclarationParser { "def Startwithuppercase(): B = {}" } should be('left) }
-      "can't  start with number" in { MethodDeclarationParser { "def 1StartwithNumber(): B = {}" } should be('left) }
+      "can't start with uppercase letter" in { MethodDeclarationParser { "def Startwithuppercase(): B = {}" } should be('left) }
+      "can't start with number" in { MethodDeclarationParser { "def 1StartwithNumber(): B = {}" } should be('left) }
     }
     "parameter" - {
       "amount" - {
