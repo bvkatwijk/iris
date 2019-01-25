@@ -1,24 +1,32 @@
 package org.bvkatwijk.iris
 
-import org.scalatest.FreeSpec
-import org.bvkatwijk.iris.id.IdentifierParser;
-import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier;
-import org.scalatest.Matchers
+import org.bvkatwijk.iris.id.IdentifierParser
+import org.bvkatwijk.iris.id.IdentifierParser.{Identifier, QualifiedIdentifier};
 
-class IdentifierParserTest extends FreeSpec with Matchers {
-  "on Type" - {
-    "A" in { IdentifierParser { "A" } should be(Right(new QualifiedIdentifier("A"))) }
-    "B" in { IdentifierParser { "B" } should be(Right(new QualifiedIdentifier("B"))) }
-    "Type" in { IdentifierParser { "Type" } should be(Right(new QualifiedIdentifier("Type"))) }
+class IdentifierParserTest extends ParseTest {
+  "qualifiedIdentifier" - {
+    "on identifier" - {
+      "A" in qualifiedIdentifier("A")
+      "B" in qualifiedIdentifier("B")
+      "Type" in qualifiedIdentifier("Type")
+    }
+    "on single packaged Type" - {
+      "a.B" in qualifiedIdentifier("a.B")
+      "a.C" in qualifiedIdentifier("a.C")
+      "b.C" in qualifiedIdentifier("b.C")
+      "some.Type" in qualifiedIdentifier("some.Type")
+    }
+    "on two packaged Type" - {
+      "a.b.C" in qualifiedIdentifier("a.b.C")
+      "some.packaged.Type" in qualifiedIdentifier("some.packaged.Type")
+    }
   }
-  "on single packaged Type" - {
-    "a.B" in { IdentifierParser { "a.B" } should be(Right(new QualifiedIdentifier("a.B"))) }
-    "a.C" in { IdentifierParser { "a.C" } should be(Right(new QualifiedIdentifier("a.C"))) }
-    "b.C" in { IdentifierParser { "b.C" } should be(Right(new QualifiedIdentifier("b.C"))) }
-    "some.Type" in { IdentifierParser { "some.Type" } should be(Right(new QualifiedIdentifier("some.Type"))) }
+
+  "identifier" - {
+    "A" in identifier("A")
+    "B" in identifier("B")
   }
-  "on two packaged Type" - {
-    "a.b.C" in { IdentifierParser { "a.b.C" } should be(Right(new QualifiedIdentifier("a.b.C"))) }
-    "some.packaged.Type" in { IdentifierParser { "some.packaged.Type" } should be(Right(new QualifiedIdentifier("some.packaged.Type"))) }
-  }
+
+  def qualifiedIdentifier(value: String) = IdentifierParser(value) should be(Right(QualifiedIdentifier(value)))
+  def identifier(value: String) = IdentifierParser.identifier(value) should be(Right(Identifier(value)))
 }
