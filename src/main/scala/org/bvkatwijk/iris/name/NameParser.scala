@@ -6,7 +6,7 @@ import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Parameter
 
-object NameParser extends {
+object NameParser {
 
   def apply(input: ParserInput): Either[CompileError, String] = {
     import Parser.DeliveryScheme.Either

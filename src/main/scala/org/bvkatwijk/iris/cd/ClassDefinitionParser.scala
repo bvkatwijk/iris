@@ -5,7 +5,7 @@ import org.bvkatwijk.iris.id.IdentifierParser
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 
-object ClassDefinitionParser extends {
+object ClassDefinitionParser {
 
   case class ClassDefinition(value: QualifiedIdentifier)
 

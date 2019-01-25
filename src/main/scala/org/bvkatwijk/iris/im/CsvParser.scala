@@ -3,7 +3,7 @@ package org.bvkatwijk.iris.im
 import scala.collection.immutable
 import org.parboiled2._
 
-object CsvParser extends {
+object CsvParser {
 
   case class CsvFile(header: Option[Record], records: immutable.Seq[Record])
   case class Record(fields: immutable.Seq[String])

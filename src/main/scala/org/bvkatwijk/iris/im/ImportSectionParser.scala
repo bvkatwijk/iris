@@ -7,7 +7,7 @@ import org.bvkatwijk.iris.id.IdentifierParser
 import org.bvkatwijk.iris.im.ImportParser.Import
 import org.bvkatwijk.iris.cu.CompileError
 
-object ImportSectionParser extends {
+object ImportSectionParser {
 
   def apply(input: ParserInput): Either[ParseError, Seq[Import]] = {
     import Parser.DeliveryScheme.Either

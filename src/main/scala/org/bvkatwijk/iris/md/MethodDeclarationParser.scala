@@ -6,7 +6,7 @@ import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Parameter
 
-object MethodDeclarationParser extends {
+object MethodDeclarationParser {
 
   case class MethodDeclaration(name: String, parameters: Seq[Parameter], returnType: QualifiedIdentifier)
 

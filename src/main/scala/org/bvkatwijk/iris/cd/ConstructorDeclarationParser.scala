@@ -5,7 +5,7 @@ import org.bvkatwijk.iris.id.IdentifierParser
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 
-object ConstructorDeclarationParser extends {
+object ConstructorDeclarationParser {
   case class Constructor(parameters: Seq[Parameter])
   case class Parameter(name: String, typeValue: QualifiedIdentifier)
 

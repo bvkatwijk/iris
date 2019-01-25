@@ -4,7 +4,7 @@ import scala.collection.immutable
 import org.parboiled2._
 import org.bvkatwijk.iris.cu.CompileError
 
-object IdentifierParser extends {
+object IdentifierParser {
   case class QualifiedIdentifier(value: String)
 
   def apply(input: ParserInput): Either[ParseError, QualifiedIdentifier] = {

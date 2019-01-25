@@ -7,15 +7,13 @@ import org.bvkatwijk.iris.id.IdentifierParser
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 
-object ImportParser extends {
-
+object ImportParser {
   case class Import(value: QualifiedIdentifier)
 
   def apply(input: ParserInput): Either[ParseError, Import] = {
     import Parser.DeliveryScheme.Either
     new ImportParser(input).importStatement.run()
   }
-
 }
 
 class ImportParser(val input: ParserInput) extends Parser {

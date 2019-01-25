@@ -7,7 +7,7 @@ import org.bvkatwijk.iris.cd.ClassDefinitionParser
 import org.bvkatwijk.iris.cd.ClassDefinitionParser.ClassDefinition
 import org.bvkatwijk.iris.im.ImportSectionParser
 
-object CompilationUnitParser extends {
+object CompilationUnitParser {
 
   case class CompilationUnit(imports: Seq[Import] = Seq(), classes: Seq[ClassDefinition] = Seq())
 
