@@ -7,7 +7,6 @@ import org.bvkatwijk.iris.cu.CompileError
 import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Parameter
 
 object MethodDeclarationParser {
-
   case class MethodDeclaration(name: String, parameters: Seq[Parameter], returnType: QualifiedIdentifier)
 
   def apply(input: ParserInput): Either[CompileError, MethodDeclaration] = {
