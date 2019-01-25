@@ -4,6 +4,7 @@ import org.scalatest.FreeSpec
 import org.scalatest.Matchers
 import org.bvkatwijk.iris.cd.ClassDefinitionParser.ClassDefinition
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
+import org.bvkatwijk.iris.ParseTest
 
 class ClassDefinitionParserTest extends FreeSpec with Matchers {
 
@@ -19,5 +20,4 @@ class ClassDefinitionParserTest extends FreeSpec with Matchers {
       "B()" in { ClassDefinitionParser { "class B() {}" } should be(Right(ClassDefinition(QualifiedIdentifier("B")))) }
     }
   }
-
 }
