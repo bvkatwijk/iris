@@ -1,9 +1,8 @@
 package org.bvkatwijk.iris.name
 
-import org.scalatest.FreeSpec
-import org.scalatest.Matchers
+import org.bvkatwijk.iris.ParseTest
 
-class NameParserTest extends FreeSpec with Matchers {
+class NameParserTest extends ParseTest {
   "name" - {
     "a" in { NameParser { "a" } should be(Right("a")) }
     "can be \"name\"" in { NameParser { "name" } should be(Right("name")) }

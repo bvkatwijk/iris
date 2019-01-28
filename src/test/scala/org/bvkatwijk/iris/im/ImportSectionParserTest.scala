@@ -1,11 +1,10 @@
 package org.bvkatwijk.iris.im
 
-import org.scalatest.FreeSpec
-import org.bvkatwijk.iris.im.ImportParser._
-import org.scalatest.Matchers
+import org.bvkatwijk.iris.ParseTest
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
+import org.bvkatwijk.iris.im.ImportParser._
 
-class ImportSectionParserTest extends FreeSpec with Matchers {
+class ImportSectionParserTest extends ParseTest {
 
   "ImportSectionParser" - {
     "on Empty" - {

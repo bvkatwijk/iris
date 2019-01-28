@@ -1,12 +1,11 @@
 package org.bvkatwijk.iris.md
 
-import org.scalatest.FreeSpec
-import org.scalatest.Matchers
+import org.bvkatwijk.iris.ParseTest
 import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Parameter
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.md.MethodDeclarationParser.MethodDeclaration
 
-class MethodDeclarationParserTest extends FreeSpec with Matchers {
+class MethodDeclarationParserTest extends ParseTest {
   "method" - {
     "def a(b: C): D = {}" in {
       MethodDeclarationParser { "def a(b: C): D = {}" } should be(Right(

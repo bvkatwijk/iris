@@ -1,8 +1,7 @@
 package org.bvkatwijk.iris.kw
 
-import org.scalatest.FreeSpec
-import org.scalatest.Matchers
+import org.bvkatwijk.iris.ParseTest
 
-class KeywordParserTest extends FreeSpec with Matchers {
+class KeywordParserTest extends ParseTest {
 
 }

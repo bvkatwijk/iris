@@ -1,12 +1,10 @@
 package org.bvkatwijk.iris.cd
 
-import org.scalatest.FreeSpec
-import org.scalatest.Matchers
-import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Parameter
-import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Constructor
+import org.bvkatwijk.iris.ParseTest
+import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.{Constructor, Parameter}
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 
-class ConstructorDeclarationParserTest extends FreeSpec with Matchers {
+class ConstructorDeclarationParserTest extends ParseTest {
   "constructor" - {
     "single parameter" - {
       "(a: B)" in { ConstructorDeclarationParser { "(a: B)" } should be(Right(Constructor(Seq(Parameter("a", QualifiedIdentifier("B")))))) }

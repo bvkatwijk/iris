@@ -1,12 +1,10 @@
 package org.bvkatwijk.iris.cd
 
-import org.scalatest.FreeSpec
-import org.scalatest.Matchers
+import org.bvkatwijk.iris.ParseTest
 import org.bvkatwijk.iris.cd.ClassDefinitionParser.ClassDefinition
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
-import org.bvkatwijk.iris.ParseTest
 
-class ClassDefinitionParserTest extends FreeSpec with Matchers {
+class ClassDefinitionParserTest extends ParseTest {
 
   "simple type" - {
     "type A" in { ClassDefinitionParser { "class A {}" } should be(Right(ClassDefinition(QualifiedIdentifier("A")))) }
