@@ -41,6 +41,7 @@ class MethodDeclarationParserTest extends ParseTest {
       "can't start with underscore" in nameError("_start_with_underscore")
       "can't contain spaces" in nameError("contains spaces")
       "can't contain hyphens" in nameError("contains-hypens")
+      "can't end with space" in nameError("spaceAfterName ")
     }
     "parameter" - {
       def paramCount(params: String, expectedCount: Int) = methodDeclaration(s"def a($params): D = {}").right.get.parameters.length should be(expectedCount)
