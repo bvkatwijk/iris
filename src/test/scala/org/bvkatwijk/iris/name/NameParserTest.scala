@@ -4,8 +4,15 @@ import org.bvkatwijk.iris.ParseTest
 
 class NameParserTest extends ParseTest {
   "name" - {
-    "a" in { NameParser { "a" } should be(Right("a")) }
-    "can be \"name\"" in { NameParser { "name" } should be(Right("name")) }
-    "can be \"mixedCase\"" in { NameParser { "mixedCase" } should be(Right("mixedCase")) }
+    "a" in name("a")
+    "name" in name("name")
+    "mixedCase" in name("mixedCase")
+
+    "CompileError:" - {
+      "Uppercase" in nameError("Uppercase")
+    }
   }
+
+  def name(value: String) = NameParser(value) should be(Right(value))
+  def nameError(value: String) = compileError(NameParser(value))
 }
