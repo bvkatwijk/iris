@@ -21,13 +21,15 @@ class IdentifierParserTest extends ParseTest {
       "some.packaged.Type" in qualifiedIdentifier("some.packaged.Type")
     }
   }
-
   "identifier" - {
     "A" in identifier("A")
     "B" in identifier("B")
-    "can't be lowercase" in { IdentifierParser.identifier("a") should be('left) }
+    "can't be lowercase" in identifierError("a")
+    "can't be a number" in identifierError("1")
+    "can't start with a number" in identifierError("1name")
   }
 
   def qualifiedIdentifier(value: String) = IdentifierParser(value) should be(Right(QualifiedIdentifier(value)))
   def identifier(value: String) = IdentifierParser.identifier(value) should be(Right(Identifier(value)))
+  def identifierError(value: String) = compileError(IdentifierParser.identifier(value))
 }
