@@ -5,7 +5,6 @@ import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.im.ImportParser._
 
 class ImportParserTest extends ParseTest {
-
   "ImportParser" - {
     "on Type" - {
       "A" in { ImportParser { "import A;" } should be(Right(Import(QualifiedIdentifier("A")))) }
