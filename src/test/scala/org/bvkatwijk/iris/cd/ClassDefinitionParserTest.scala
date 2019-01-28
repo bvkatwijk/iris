@@ -5,17 +5,34 @@ import org.bvkatwijk.iris.cd.ClassDefinitionParser.ClassDefinition
 import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 
 class ClassDefinitionParserTest extends ParseTest {
+  "classDefinition" - {
+      def classDefinition(value: String) = ClassDefinitionParser(value)
+      def classOf(value: String) = Right(ClassDefinition(QualifiedIdentifier(value)))
 
-  "simple type" - {
-    "type A" in { ClassDefinitionParser { "class A {}" } should be(Right(ClassDefinition(QualifiedIdentifier("A")))) }
-    "type B" in { ClassDefinitionParser { "class B {}" } should be(Right(ClassDefinition(QualifiedIdentifier("B")))) }
-    "type Type" in { ClassDefinitionParser { "class Type {}" } should be(Right(ClassDefinition(QualifiedIdentifier("Type")))) }
-  }
+      "type" - {
+        def classType(str: String) = classDefinition(s"class $str {}") should be(classOf(str))
 
-  "with constructor" - {
-    "empty" - {
-      "A()" in { ClassDefinitionParser { "class A() {}" } should be(Right(ClassDefinition(QualifiedIdentifier("A")))) }
-      "B()" in { ClassDefinitionParser { "class B() {}" } should be(Right(ClassDefinition(QualifiedIdentifier("B")))) }
+        "A" in classType("A")
+        "B" in classType("B")
+        "Type" in classType("Type")
+      }
+
+    "with constructor" - {
+      "empty" - {
+        "A()" in {
+          ClassDefinitionParser {
+            "class A() {}"
+          } should be(Right(ClassDefinition(QualifiedIdentifier("A"))))
+        }
+        "B()" in {
+          ClassDefinitionParser {
+            "class B() {}"
+          } should be(Right(ClassDefinition(QualifiedIdentifier("B"))))
+        }
+      }
+      "with" - {
+        "one parameter" in {}
+      }
     }
   }
 }
