@@ -23,14 +23,18 @@ class MethodDeclarationParser(val input: ParserInput) extends Parser {
   import MethodDeclarationParser.MethodDeclaration
 
   def methodDeclaration: Rule1[MethodDeclaration] = rule {
-    atomic("def") ~ ' ' ~ name ~ '(' ~ zeroOrMore(parameter).separatedBy(',' ~ OWS) ~ ')' ~ ':' ~ OWS ~ identifier ~ OWS ~ '=' ~ ' ' ~ '{' ~ '}' ~> (MethodDeclaration)
+    atomic("def") ~ ' ' ~ name ~ '(' ~ parameters ~ ')' ~ ':' ~ OWS ~ identifier ~ OWS ~ '=' ~ ' ' ~ '{' ~ '}' ~> (MethodDeclaration)
   }
+
+  def parameters = rule { zeroOrMore(parameter).separatedBy(',' ~ OWS) }
 
   def parameter: Rule1[Parameter] = rule { name ~ ':' ~ OWS ~ identifier ~> Parameter }
 
-  def name: Rule1[String] = rule { capture(oneOrMore(CharPredicate.LowerAlpha) ~ zeroOrMore(CharPredicate.AlphaNum)) }
+  def name: Rule1[String] = rule { capture(CharPredicate.LowerAlpha ~ zeroOrMore(methodNameCharacter)) }
 
   def identifier: Rule1[QualifiedIdentifier] = rule { runSubParser { i => new IdentifierParser(i).qualifiedIdentifier } }
 
   def OWS: Rule0 = rule { zeroOrMore(' ') }
+
+  def methodNameCharacter: CharPredicate = CharPredicate.AlphaNum ++ '_'
 }
