@@ -38,6 +38,7 @@ class MethodDeclarationParserTest extends ParseTest {
       "can end with numbers" in name("endsWithNumbersLike123")
       "can't start with uppercase letter" in nameError("Startwithuppercase")
       "can't start with number" in nameError("1StartwithNumber")
+      "can't start with underscore" in nameError("_start_with_underscore")
       "can't contain spaces" in nameError("contains spaces")
       "can't contain hyphens" in nameError("contains-hypens")
     }
