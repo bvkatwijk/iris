@@ -23,8 +23,16 @@ class MethodDeclarationParser(val input: ParserInput) extends Parser {
   import MethodDeclarationParser.MethodDeclaration
 
   def methodDeclaration: Rule1[MethodDeclaration] = rule {
-    atomic("def") ~ ' ' ~ name ~ '(' ~ parameters ~ ')' ~ ':' ~ OWS ~ identifier ~ OWS ~ '=' ~ ' ' ~ '{' ~ '}' ~> (MethodDeclaration)
+    methodKeyword ~ ' ' ~ methodDeclarationActual ~ methodBody ~> (MethodDeclaration)
   }
+
+  def methodDeclarationActual = rule { name ~ wrappedParameters ~ ':' ~ OWS ~ identifier ~ OWS ~ '=' ~ ' ' }
+
+  def methodKeyword = rule { atomic("def") }
+
+  def methodBody = rule { '{' ~ '}' }
+
+  def wrappedParameters = rule { '(' ~ parameters ~ ')' }
 
   def parameters = rule { zeroOrMore(parameter).separatedBy(',' ~ OWS) }
 
