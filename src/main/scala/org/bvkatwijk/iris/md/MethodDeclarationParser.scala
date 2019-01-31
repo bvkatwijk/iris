@@ -22,9 +22,7 @@ object MethodDeclarationParser {
 class MethodDeclarationParser(val input: ParserInput) extends Parser {
   import MethodDeclarationParser.MethodDeclaration
 
-  def methodDeclaration: Rule1[MethodDeclaration] = rule {
-    methodKeyword ~ ' ' ~ methodDeclarationActual ~ methodBody ~> (MethodDeclaration)
-  }
+  def methodDeclaration: Rule1[MethodDeclaration] = rule { methodKeyword ~ ' ' ~ methodDeclarationActual ~ methodBody ~> (MethodDeclaration) }
 
   def methodDeclarationActual = rule { name ~ wrappedParameters ~ ':' ~ OWS ~ identifier ~ OWS ~ '=' ~ ' ' }
 
