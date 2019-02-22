@@ -9,7 +9,12 @@ import org.bvkatwijk.iris.im.ImportSectionParser
 
 object CompilationUnitParser {
 
-  case class CompilationUnit(imports: Seq[Import] = Seq(), classes: Seq[ClassDefinition] = Seq())
+  case class CompilationUnit(imports: Seq[Import] = Seq(), classes: Seq[ClassDefinition] = Seq()) {
+    def toJava: String = {
+      "Hello world"
+    }
+  }
+
 
   def apply(input: ParserInput): Either[CompileError, CompilationUnit] = {
     import Parser.DeliveryScheme.Either
@@ -28,7 +33,9 @@ class CompilationUnitParser(val input: ParserInput) extends Parser {
 
   def importSection: Rule1[Seq[Import]] = rule { runSubParser { new ImportSectionParser(_).importSection } }
 
-  def classDeclarations: Rule1[Seq[ClassDefinition]] = rule { zeroOrMore(runSubParser { new ClassDefinitionParser(_).classDefinition }).separatedBy(oneOrMore(NL)) }
+  def classDeclarations: Rule1[Seq[ClassDefinition]] = rule { zeroOrMore(classDeclaration).separatedBy(oneOrMore(NL)) }
+
+  def classDeclaration: Rule1[ClassDefinition] = rule { runSubParser { new ClassDefinitionParser(_).classDefinition } }
 
   def NL: Rule0 = rule { optional('\r') ~ '\n' }
 

@@ -6,11 +6,21 @@ import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 
 object ClassDefinitionParser {
-  case class ClassDefinition(value: QualifiedIdentifier)
+  case class ClassDefinition(value: QualifiedIdentifier) {
 
-  def apply(input: ParserInput): Either[ParseError, ClassDefinition] = {
+    def toJava: String = {
+      "public class Hello { @Override public String toString() { return \"Hello World!\"; } }"
+    }
+  }
+
+  def apply(input: ParserInput): Either[CompileError, ClassDefinition] = {
     import Parser.DeliveryScheme.Either
-    new ClassDefinitionParser(input).classDefinition.run()
+    val parser = new ClassDefinitionParser(input)
+    parser
+      .classDefinition
+      .run()
+      .left
+      .map(error => CompileError(parser.formatError(error)))
   }
 }
 
