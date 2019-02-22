@@ -14,12 +14,12 @@ class HelloTest extends FreeSpec with Matchers {
   def classOutputFolder = "./"
 
   "hello.iris" - {
-    "compiles and returns 'Hello World!" in { compileAndRun("src/test/scala/org/bvkatwijk/iris/full/hello.iris") should be("Hello World!")}
+    "compiles and returns 'Hello World!" in { compileAndRun("class Hello() {}") should be("Hello World!") }
   }
 
-  def compileAndRun(path: String): String = {
+  def compileAndRun(source: String): String = {
     CompilerUtils.CACHED_COMPILER
-      .loadFromJava("Hello", irisToJava(Source.fromFile(path).mkString))
+      .loadFromJava("Hello", irisToJava(source))
       .newInstance()
       .toString()
   }
