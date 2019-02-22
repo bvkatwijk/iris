@@ -6,10 +6,9 @@ import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
 import org.bvkatwijk.iris.cu.CompileError
 
 object ClassDefinitionParser {
-  case class ClassDefinition(value: QualifiedIdentifier) {
-
+  case class ClassDefinition(qualifiedIdentifier: QualifiedIdentifier) {
     def toJava: String = {
-      "public class Hello { @Override public String toString() { return \"Hello World!\"; } }"
+      s"""public class ${qualifiedIdentifier.javaClassName} { @Override public String toString() { return "[${qualifiedIdentifier.javaClassName}]"; } }"""
     }
   }
 

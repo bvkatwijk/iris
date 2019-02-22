@@ -4,7 +4,10 @@ import org.bvkatwijk.iris.cu.CompileError
 import org.parboiled2._
 
 object IdentifierParser {
-  case class QualifiedIdentifier(value: String)
+  case class QualifiedIdentifier(value: String) {
+    def javaClassName = value
+  }
+
   case class Identifier(value: String)
 
   def apply(input: ParserInput): Either[CompileError, QualifiedIdentifier] = parse(input, _.qualifiedIdentifier)
