@@ -14,8 +14,6 @@ object NameParser {
   }
 }
 
-class NameParser(val input: ParserInput) extends Parser {
+class NameParser(val input: ParserInput) extends Parser with Base {
   def name: Rule1[String] = rule { capture(oneOrMore(CharPredicate.LowerAlpha) ~ zeroOrMore(CharPredicate.Alpha)) }
-
-  def OWS: Rule0 = rule { zeroOrMore(' ') }
 }

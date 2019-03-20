@@ -15,14 +15,12 @@ object ImportSectionParser {
 
 }
 
-class ImportSectionParser(val input: ParserInput) extends Parser {
+class ImportSectionParser(val input: ParserInput) extends Parser with Base {
 
   def importSection: Rule1[Seq[Import]] = rule { zeroOrMore(importStatement2).separatedBy(NL) }
 
   def importStatement2: Rule1[Import] = rule { runSubParser { i => new ImportParser(i).importStatement } }
 
   def NL: Rule0 = rule { optional('\r') ~ '\n' }
-
-  def OWS: Rule0 = rule { zeroOrMore(' ') }
 
 }

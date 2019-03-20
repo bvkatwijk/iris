@@ -17,7 +17,7 @@ object ConstructorDeclarationParser {
   }
 }
 
-class ConstructorDeclarationParser(val input: ParserInput) extends Parser {
+class ConstructorDeclarationParser(val input: ParserInput) extends Parser with Base {
   import ConstructorDeclarationParser.{Constructor, Parameter}
   import IdentifierParser.QualifiedIdentifier;
 
@@ -28,7 +28,4 @@ class ConstructorDeclarationParser(val input: ParserInput) extends Parser {
   def name: Rule1[String] = rule { capture(oneOrMore(CharPredicate.LowerAlpha)) }
 
   def identifier: Rule1[QualifiedIdentifier] = rule { runSubParser { i => new IdentifierParser(i).qualifiedIdentifier } }
-
-  def OWS: Rule0 = rule { zeroOrMore(' ') }
-
 }

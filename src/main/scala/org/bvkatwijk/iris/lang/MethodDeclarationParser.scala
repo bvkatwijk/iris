@@ -17,7 +17,7 @@ object MethodDeclarationParser {
   }
 }
 
-class MethodDeclarationParser(val input: ParserInput) extends Parser {
+class MethodDeclarationParser(val input: ParserInput) extends Parser with Base {
   import MethodDeclarationParser.MethodDeclaration
 
   def methodDeclaration: Rule1[MethodDeclaration] = rule { methodKeyword ~ ' ' ~ methodDeclarationActual ~ methodBody ~> (MethodDeclaration) }
@@ -37,8 +37,6 @@ class MethodDeclarationParser(val input: ParserInput) extends Parser {
   def name: Rule1[String] = rule { capture(CharPredicate.LowerAlpha ~ zeroOrMore(methodNameCharacter)) }
 
   def identifier: Rule1[QualifiedIdentifier] = rule { runSubParser { i => new IdentifierParser(i).qualifiedIdentifier } }
-
-  def OWS: Rule0 = rule { zeroOrMore(' ') }
 
   def methodNameCharacter: CharPredicate = CharPredicate.AlphaNum ++ '_'
 }

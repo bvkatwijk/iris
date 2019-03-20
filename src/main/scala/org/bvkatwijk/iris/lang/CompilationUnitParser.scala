@@ -23,7 +23,7 @@ object CompilationUnitParser {
   }
 }
 
-class CompilationUnitParser(val input: ParserInput) extends Parser {
+class CompilationUnitParser(val input: ParserInput) extends Parser with Base {
   import CompilationUnitParser._
 
   def compilationUnit: Rule1[CompilationUnit] = rule { importSection ~ zeroOrMore(NL) ~ classDeclarations ~ EOI ~> (CompilationUnit) }
@@ -35,7 +35,5 @@ class CompilationUnitParser(val input: ParserInput) extends Parser {
   def classDeclaration: Rule1[ClassDefinition] = rule { runSubParser { new ClassDefinitionParser(_).classDefinition } }
 
   def NL: Rule0 = rule { optional('\r') ~ '\n' }
-
-  def OWS: Rule0 = rule { zeroOrMore(' ') }
 
 }

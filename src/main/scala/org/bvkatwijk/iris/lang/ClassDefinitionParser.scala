@@ -21,7 +21,7 @@ object ClassDefinitionParser {
   }
 }
 
-class ClassDefinitionParser(val input: ParserInput) extends Parser {
+class ClassDefinitionParser(val input: ParserInput) extends Parser with Base {
   import ClassDefinitionParser.ClassDefinition
 
   def classDefinition: Rule1[ClassDefinition] = rule { atomic("class") ~ ' ' ~ identifier ~ optional(constructorDefinition) ~ ' ' ~ '{' ~ '}' ~> (ClassDefinition) }
@@ -29,6 +29,4 @@ class ClassDefinitionParser(val input: ParserInput) extends Parser {
   def identifier = rule { runSubParser { i => new IdentifierParser(i).qualifiedIdentifier } }
 
   def constructorDefinition = rule { '(' ~ ')' }
-
-  def OWS: Rule0 = rule { zeroOrMore(' ') }
 }
