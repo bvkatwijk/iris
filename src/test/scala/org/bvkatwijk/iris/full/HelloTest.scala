@@ -27,7 +27,6 @@ class HelloTest extends FreeSpec with Matchers {
     }
   }
 
-
   def irisToJava(iris: String): String = {
     val result = ClassDefinitionParser(iris)
     if(result.isLeft) {
