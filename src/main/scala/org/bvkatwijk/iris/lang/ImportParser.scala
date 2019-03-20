@@ -1,11 +1,7 @@
-package org.bvkatwijk.iris.im
+package org.bvkatwijk.iris.lang
 
-import scala.collection.immutable
+import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
 import org.parboiled2._
-import org.parboiled2.CharPredicate
-import org.bvkatwijk.iris.id.IdentifierParser
-import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
-import org.bvkatwijk.iris.cu.CompileError
 
 object ImportParser {
   case class Import(value: QualifiedIdentifier)

@@ -1,9 +1,9 @@
-package org.bvkatwijk.iris.md
+package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Parameter
-import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
-import org.bvkatwijk.iris.md.MethodDeclarationParser.MethodDeclaration
+import org.bvkatwijk.iris.lang.ConstructorDeclarationParser.Parameter
+import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
+import org.bvkatwijk.iris.lang.MethodDeclarationParser.MethodDeclaration
 
 class MethodDeclarationParserTest extends ParseTest {
   "method" - {

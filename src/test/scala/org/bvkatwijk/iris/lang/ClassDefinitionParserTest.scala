@@ -1,8 +1,8 @@
-package org.bvkatwijk.iris.cd
+package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.cd.ClassDefinitionParser.ClassDefinition
-import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
+import org.bvkatwijk.iris.lang.ClassDefinitionParser.ClassDefinition
+import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
 
 class ClassDefinitionParserTest extends ParseTest {
   "classDefinition" - {

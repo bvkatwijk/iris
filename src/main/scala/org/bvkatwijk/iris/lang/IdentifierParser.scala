@@ -1,6 +1,5 @@
-package org.bvkatwijk.iris.id;
+package org.bvkatwijk.iris.lang
 
-import org.bvkatwijk.iris.cu.CompileError
 import org.parboiled2._
 
 object IdentifierParser {
@@ -24,8 +23,7 @@ object IdentifierParser {
 }
 
 class IdentifierParser(val input: ParserInput) extends Parser {
-  import IdentifierParser.Identifier
-  import IdentifierParser.QualifiedIdentifier
+  import IdentifierParser.{Identifier, QualifiedIdentifier}
 
   def qualifiedIdentifier: Rule1[QualifiedIdentifier] = rule { capture(zeroOrMore(pack ~ '.') ~ identifier) ~> (QualifiedIdentifier) }
 

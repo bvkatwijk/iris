@@ -1,9 +1,7 @@
-package org.bvkatwijk.iris.cd
+package org.bvkatwijk.iris.lang
 
+import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
 import org.parboiled2._
-import org.bvkatwijk.iris.id.IdentifierParser
-import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
-import org.bvkatwijk.iris.cu.CompileError
 
 object ConstructorDeclarationParser {
   case class Constructor(parameters: Seq[Parameter])
@@ -20,8 +18,7 @@ object ConstructorDeclarationParser {
 }
 
 class ConstructorDeclarationParser(val input: ParserInput) extends Parser {
-  import ConstructorDeclarationParser.Constructor;
-  import ConstructorDeclarationParser.Parameter;
+  import ConstructorDeclarationParser.{Constructor, Parameter}
   import IdentifierParser.QualifiedIdentifier;
 
   def constructorDefinition: Rule1[Constructor] = rule { '(' ~ oneOrMore(parameter).separatedBy(',' ~ OWS) ~ ')' ~> (Constructor) }

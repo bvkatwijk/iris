@@ -1,10 +1,8 @@
-package org.bvkatwijk.iris.md
+package org.bvkatwijk.iris.lang
 
+import org.bvkatwijk.iris.lang.ConstructorDeclarationParser.Parameter
+import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
 import org.parboiled2._
-import org.bvkatwijk.iris.id.IdentifierParser
-import org.bvkatwijk.iris.id.IdentifierParser.QualifiedIdentifier
-import org.bvkatwijk.iris.cu.CompileError
-import org.bvkatwijk.iris.cd.ConstructorDeclarationParser.Parameter
 
 object MethodDeclarationParser {
   case class MethodDeclaration(name: String, parameters: Seq[Parameter], returnType: QualifiedIdentifier)

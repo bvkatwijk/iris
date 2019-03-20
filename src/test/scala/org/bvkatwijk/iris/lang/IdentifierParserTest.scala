@@ -1,7 +1,7 @@
-package org.bvkatwijk.iris
+package org.bvkatwijk.iris.lang
 
-import org.bvkatwijk.iris.id.IdentifierParser
-import org.bvkatwijk.iris.id.IdentifierParser.{Identifier, QualifiedIdentifier};
+import org.bvkatwijk.iris.ParseTest
+import org.bvkatwijk.iris.lang.IdentifierParser.{Identifier, QualifiedIdentifier};
 
 class IdentifierParserTest extends ParseTest {
   "qualifiedIdentifier" - {

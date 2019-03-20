@@ -1,11 +1,8 @@
-package org.bvkatwijk.iris.cu
+package org.bvkatwijk.iris.lang
 
+import org.bvkatwijk.iris.lang.ClassDefinitionParser.ClassDefinition
+import org.bvkatwijk.iris.lang.ImportParser.Import
 import org.parboiled2._
-import org.bvkatwijk.iris.im.ImportParser.Import
-import org.bvkatwijk.iris.im.ImportParser
-import org.bvkatwijk.iris.cd.ClassDefinitionParser
-import org.bvkatwijk.iris.cd.ClassDefinitionParser.ClassDefinition
-import org.bvkatwijk.iris.im.ImportSectionParser
 
 object CompilationUnitParser {
 

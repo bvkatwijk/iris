@@ -1,4 +1,4 @@
-package org.bvkatwijk.iris.kw
+package org.bvkatwijk.iris.lang
 
 import org.parboiled2._
 

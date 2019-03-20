@@ -1,4 +1,4 @@
-package org.bvkatwijk.iris.name
+package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
 

@@ -1,8 +1,8 @@
 package org.bvkatwijk.iris.full
 
-import org.bvkatwijk.iris.cd.ClassDefinitionParser
-import org.scalatest.{FreeSpec, Matchers}
 import net.openhft.compiler.CompilerUtils
+import org.bvkatwijk.iris.lang.ClassDefinitionParser
+import org.scalatest.{FreeSpec, Matchers}
 
 class HelloTest extends FreeSpec with Matchers {
   def classOutputFolder = "./"

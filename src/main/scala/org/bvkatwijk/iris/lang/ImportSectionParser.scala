@@ -1,11 +1,7 @@
-package org.bvkatwijk.iris.im
+package org.bvkatwijk.iris.lang
 
-import scala.collection.immutable
+import org.bvkatwijk.iris.lang.ImportParser.Import
 import org.parboiled2._
-import org.parboiled2.CharPredicate
-import org.bvkatwijk.iris.id.IdentifierParser
-import org.bvkatwijk.iris.im.ImportParser.Import
-import org.bvkatwijk.iris.cu.CompileError
 
 object ImportSectionParser {
 
