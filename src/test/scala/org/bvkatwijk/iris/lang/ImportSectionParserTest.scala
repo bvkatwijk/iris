@@ -1,7 +1,7 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
+import org.bvkatwijk.iris.ast.QualifiedIdentifier
 import org.bvkatwijk.iris.lang.ImportParser.Import
 
 class ImportSectionParserTest extends ParseTest {

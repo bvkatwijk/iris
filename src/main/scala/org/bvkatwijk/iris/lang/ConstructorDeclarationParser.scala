@@ -1,6 +1,6 @@
 package org.bvkatwijk.iris.lang
 
-import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
+import org.bvkatwijk.iris.ast.QualifiedIdentifier
 import org.parboiled2._
 
 object ConstructorDeclarationParser {
@@ -18,8 +18,7 @@ object ConstructorDeclarationParser {
 }
 
 class ConstructorDeclarationParser(val input: ParserInput) extends Parser with Base {
-  import ConstructorDeclarationParser.{Constructor, Parameter}
-  import IdentifierParser.QualifiedIdentifier;
+  import ConstructorDeclarationParser.{Constructor, Parameter};
 
   def constructorDefinition: Rule1[Constructor] = rule { '(' ~ oneOrMore(parameter).separatedBy(',' ~ OWS) ~ ')' ~> (Constructor) }
 

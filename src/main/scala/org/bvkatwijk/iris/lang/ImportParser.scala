@@ -1,6 +1,6 @@
 package org.bvkatwijk.iris.lang
 
-import org.bvkatwijk.iris.lang.IdentifierParser.QualifiedIdentifier
+import org.bvkatwijk.iris.ast.QualifiedIdentifier
 import org.parboiled2._
 
 object ImportParser {

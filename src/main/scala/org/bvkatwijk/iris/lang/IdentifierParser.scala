@@ -1,13 +1,9 @@
 package org.bvkatwijk.iris.lang
 
-import org.bvkatwijk.iris.ast.Identifier
+import org.bvkatwijk.iris.ast.{Identifier, QualifiedIdentifier}
 import org.parboiled2._
 
 object IdentifierParser {
-  case class QualifiedIdentifier(value: String) {
-    def javaClassName = value
-  }
-
   def apply(input: ParserInput): Either[CompileError, QualifiedIdentifier] = parse(input, _.qualifiedIdentifier)
 
   def identifier(input: ParserInput): Either[CompileError, Identifier] = parse(input, _.captureIdentifier)
@@ -22,8 +18,6 @@ object IdentifierParser {
 }
 
 class IdentifierParser(val input: ParserInput) extends Parser with Base {
-  import IdentifierParser.QualifiedIdentifier
-
   def qualifiedIdentifier: Rule1[QualifiedIdentifier] = rule { capture(zeroOrMore(pack ~ '.') ~ identifier) ~> (QualifiedIdentifier) }
 
   def captureIdentifier: Rule1[Identifier] = rule { capture(identifier) ~> (Identifier) }
