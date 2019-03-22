@@ -14,12 +14,10 @@ object IdentifierParser {
   }
 }
 
-class IdentifierParser(val input: ParserInput) extends Parser with Base {
+class IdentifierParser(val input: ParserInput) extends Parser with Base with IdentifierRule {
   def qualifiedIdentifier: Rule1[QualifiedIdentifier] = rule { capture(zeroOrMore(pack ~ '.') ~ identifier) ~> (QualifiedIdentifier) }
 
-  def captureIdentifier: Rule1[Identifier] = rule { capture(identifier) ~> (Identifier) }
-
-  def identifier = rule { CharPredicate.UpperAlpha ~ zeroOrMore(CharPredicate.Alpha) }
+  def captureIdentifier: Rule1[Identifier] = rule { capture(identifier) ~> Identifier }
 
   def pack: Rule0 = rule { oneOrMore(CharPredicate.LowerAlpha) }
 }
