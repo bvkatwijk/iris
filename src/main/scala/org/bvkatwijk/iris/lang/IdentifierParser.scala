@@ -1,19 +1,16 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ast.{Identifier, QualifiedIdentifier}
+import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object IdentifierParser {
-  def apply(input: ParserInput): Either[CompileError, QualifiedIdentifier] = parse(input, _.qualifiedIdentifier)
+  def apply(input: ParserInput): Either[CompileError, QualifiedIdentifier] = {
+    new IsolatedParser().parse(new IdentifierParser(input))(_.qualifiedIdentifier)
+  }
 
-  def identifier(input: ParserInput): Either[CompileError, Identifier] = parse(input, _.captureIdentifier)
-
-  def parse[T](input: ParserInput, ruleSupplier: IdentifierParser => Rule1[T]): Either[CompileError, T] = {
-    import Parser.DeliveryScheme.Either
-    val parser = new IdentifierParser(input)
-    parser.__run(ruleSupplier(parser))
-      .left
-      .map(error => CompileError(parser.formatError(error)))
+  def identifier(input: ParserInput): Either[CompileError, Identifier] = {
+    new IsolatedParser().parse(new IdentifierParser(input))(_.captureIdentifier)
   }
 }
 

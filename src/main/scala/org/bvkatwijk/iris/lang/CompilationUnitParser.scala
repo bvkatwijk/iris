@@ -2,6 +2,7 @@ package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ast.ClassDefinition
 import org.bvkatwijk.iris.lang.ImportParser.Import
+import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object CompilationUnitParser {
@@ -12,12 +13,7 @@ object CompilationUnitParser {
   }
 
   def apply(input: ParserInput): Either[CompileError, CompilationUnit] = {
-    import Parser.DeliveryScheme.Either
-    val parser = new CompilationUnitParser(input)
-    parser.compilationUnit
-      .run()
-      .left
-      .map(error => CompileError(parser.formatError(error)))
+    new IsolatedParser().parse(new CompilationUnitParser(input))(_.compilationUnit)
   }
 }
 

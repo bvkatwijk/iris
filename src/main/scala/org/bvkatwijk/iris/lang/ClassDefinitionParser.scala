@@ -1,17 +1,12 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ast.ClassDefinition
+import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object ClassDefinitionParser {
   def apply(input: ParserInput): Either[CompileError, ClassDefinition] = {
-    import Parser.DeliveryScheme.Either
-    val parser = new ClassDefinitionParser(input)
-    parser
-      .classDefinition
-      .run()
-      .left
-      .map(error => CompileError(parser.formatError(error)))
+    new IsolatedParser().parse(new ClassDefinitionParser(input))(_.classDefinition)
   }
 }
 

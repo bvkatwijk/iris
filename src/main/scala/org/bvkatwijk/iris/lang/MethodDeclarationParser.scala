@@ -2,18 +2,15 @@ package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ast.QualifiedIdentifier
 import org.bvkatwijk.iris.lang.ConstructorDeclarationParser.Parameter
+import org.bvkatwijk.iris.lang.NameParser.NameParser
+import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object MethodDeclarationParser {
   case class MethodDeclaration(name: String, parameters: Seq[Parameter], returnType: QualifiedIdentifier)
 
   def apply(input: ParserInput): Either[CompileError, MethodDeclaration] = {
-    import Parser.DeliveryScheme.Either
-    val parser = new MethodDeclarationParser(input)
-    parser.methodDeclaration
-      .run()
-      .left
-      .map(error => CompileError(parser.formatError(error)))
+    new IsolatedParser().parse(new MethodDeclarationParser(input))(_.methodDeclaration)
   }
 }
 

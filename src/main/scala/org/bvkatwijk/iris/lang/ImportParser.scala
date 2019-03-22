@@ -1,14 +1,14 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ast.QualifiedIdentifier
+import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object ImportParser {
   case class Import(value: QualifiedIdentifier)
 
-  def apply(input: ParserInput): Either[ParseError, Import] = {
-    import Parser.DeliveryScheme.Either
-    new ImportParser(input).importStatement.run()
+  def apply(input: ParserInput): Either[CompileError, Import] = {
+    new IsolatedParser().parse(new ImportParser(input))(_.importStatement)
   }
 }
 

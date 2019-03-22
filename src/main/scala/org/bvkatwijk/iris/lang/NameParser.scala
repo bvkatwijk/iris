@@ -1,15 +1,11 @@
 package org.bvkatwijk.iris.lang
 
+import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object NameParser {
   def apply(input: ParserInput): Either[CompileError, String] = {
-    import Parser.DeliveryScheme.Either
-    val parser = new NameParser(input)
-    parser.name
-      .run()
-      .left
-      .map(error => CompileError(parser.formatError(error)))
+    new IsolatedParser().parse(new NameParser(input))(_.name)
   }
   class NameParser(val input: ParserInput) extends Parser with Base with NameRule
 }

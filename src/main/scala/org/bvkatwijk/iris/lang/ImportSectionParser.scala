@@ -1,18 +1,13 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.lang.ImportParser.Import
+import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object ImportSectionParser {
-
-  def apply(input: ParserInput): Either[ParseError, Seq[Import]] = {
-    import Parser.DeliveryScheme.Either
-
-    new ImportSectionParser(input)
-      .importSection
-      .run()
+  def apply(input: ParserInput): Either[CompileError, Seq[Import]] = {
+    new IsolatedParser().parse(new ImportSectionParser(input))(_.importSection)
   }
-
 }
 
 class ImportSectionParser(val input: ParserInput) extends Parser with Base {
