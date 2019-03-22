@@ -1,7 +1,7 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ast.ClassDefinition
-import org.bvkatwijk.iris.lang.ImportParser.Import
+import org.bvkatwijk.iris.ast.Import
 import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
