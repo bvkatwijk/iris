@@ -1,7 +1,6 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.ast.QualifiedIdentifier
 import org.bvkatwijk.iris.lang.ConstructorDeclarationParser.Parameter
 import org.bvkatwijk.iris.lang.MethodDeclarationParser.MethodDeclaration
 
@@ -11,15 +10,15 @@ class MethodDeclarationParserTest extends ParseTest {
       MethodDeclarationParser { "def a(b: C): D = {}" } should be(Right(
         MethodDeclaration(
           "a",
-          Seq(Parameter("b", QualifiedIdentifier("C"))),
-          QualifiedIdentifier("D"))))
+          Seq(Parameter("b", qualifiedIdentifier("C"))),
+          qualifiedIdentifier("D"))))
     }
     "def name(value: Type): ReturnType = {}" in {
       MethodDeclarationParser { "def name(value: Type): ReturnType = {}" } should be(Right(
         MethodDeclaration(
           "name",
-          Seq(Parameter("value", QualifiedIdentifier("Type"))),
-          QualifiedIdentifier("ReturnType"))))
+          Seq(Parameter("value", qualifiedIdentifier("Type"))),
+          qualifiedIdentifier("ReturnType"))))
     }
     "keyword" - {
       def methodKeyword(key: String)  = methodDeclaration(s"$key name(): B = {}").right.get.name should be("name")

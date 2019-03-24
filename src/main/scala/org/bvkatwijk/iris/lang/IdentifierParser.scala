@@ -18,6 +18,7 @@ class IdentifierParser(val input: ParserInput) extends Parser
   with Base
   with IdentifierRule
   with QualifiedIdentifierRule
+  with PackElementRule
   with PackRule {
 
 }

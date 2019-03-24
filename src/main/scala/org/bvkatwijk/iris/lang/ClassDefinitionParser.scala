@@ -12,6 +12,7 @@ object ClassDefinitionParser {
 
 class ClassDefinitionParser(val input: ParserInput) extends Parser
   with Base
+  with PackElementRule
   with PackRule
   with IdentifierRule
   with QualifiedIdentifierRule {

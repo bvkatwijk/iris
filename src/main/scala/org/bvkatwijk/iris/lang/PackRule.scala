@@ -1,7 +1,8 @@
 package org.bvkatwijk.iris.lang
 
-import org.parboiled2.{CharPredicate, Parser, Rule0}
+import org.bvkatwijk.iris.ast.Pack
+import org.parboiled2.{Parser, Rule1}
 
-trait PackRule { self: Parser =>
-  def pack: Rule0 = rule { oneOrMore(CharPredicate.LowerAlpha) }
+trait PackRule { self: Parser with PackElementRule =>
+  def pack: Rule1[Pack] = rule { oneOrMore(packElement).separatedBy('.') ~> (Pack) }
 }
