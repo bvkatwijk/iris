@@ -54,4 +54,6 @@ class MethodDeclarationParserTest extends ParseTest {
     }
     def methodDeclaration(value: String) = MethodDeclarationParser(value)
   }
+
+
 }
