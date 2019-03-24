@@ -1,13 +1,13 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.ast.{ClassDefinition, QualifiedIdentifier}
+import org.bvkatwijk.iris.ast.ClassDefinition
 
 class ClassDefinitionParserTest extends ParseTest {
   "classDefinition" - {
     def classDefinition(value: String) = ClassDefinitionParser(value)
 
-    def classOf(value: String) = Right(ClassDefinition(QualifiedIdentifier(value)))
+    def classOf(value: String) = Right(ClassDefinition(qualifiedIdentifier(value)))
 
     "type" - {
       def classType(str: String) = classDefinition(s"class $str {}") should be(classOf(str))
