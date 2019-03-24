@@ -1,7 +1,6 @@
 package org.bvkatwijk.iris.lang
 
-import org.bvkatwijk.iris.ast.QualifiedIdentifier
-import org.bvkatwijk.iris.lang.ConstructorDeclarationParser.Parameter
+import org.bvkatwijk.iris.ast.{Parameter, QualifiedIdentifier}
 import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 

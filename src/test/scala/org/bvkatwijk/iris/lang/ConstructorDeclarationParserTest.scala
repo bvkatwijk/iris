@@ -1,7 +1,8 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.lang.ConstructorDeclarationParser.{Constructor, Parameter}
+import org.bvkatwijk.iris.ast.Parameter
+import org.bvkatwijk.iris.lang.ConstructorDeclarationParser.Constructor
 
 class ConstructorDeclarationParserTest extends ParseTest {
   "constructor" - {
