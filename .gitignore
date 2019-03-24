@@ -6,8 +6,10 @@
 .classpath
 .project
 .settings
-project/project
 target/
 /bin/
 .idea
 *.iml
+
+# SBT
+project/project
