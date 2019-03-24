@@ -1,7 +1,6 @@
 package org.bvkatwijk.iris
 
-import org.scalatest.FreeSpec
-import org.scalatest.Matchers
+import org.scalatest.{FreeSpec, Matchers}
 
 class IrisCompilerTest extends FreeSpec with Matchers {
 
