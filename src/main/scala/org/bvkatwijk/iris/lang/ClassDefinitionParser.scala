@@ -10,8 +10,13 @@ object ClassDefinitionParser {
   }
 }
 
-class ClassDefinitionParser(val input: ParserInput) extends Parser with Base {
-  def classDefinition: Rule1[ClassDefinition] = rule { atomic("class") ~ ' ' ~ identifier ~ optional(constructorDefinition) ~ ' ' ~ '{' ~ '}' ~> (ClassDefinition) }
-  def identifier = rule { runSubParser { i => new IdentifierParser(i).qualifiedIdentifier } }
+class ClassDefinitionParser(val input: ParserInput) extends Parser
+  with Base
+  with PackRule
+  with IdentifierRule
+  with QualifiedIdentifierRule {
+  def classDefinition: Rule1[ClassDefinition] = rule {
+    atomic("class") ~ ' ' ~ qualifiedIdentifier ~ optional(constructorDefinition) ~ ' ' ~ '{' ~ '}' ~> (ClassDefinition)
+  }
   def constructorDefinition = rule { '(' ~ ')' }
 }
