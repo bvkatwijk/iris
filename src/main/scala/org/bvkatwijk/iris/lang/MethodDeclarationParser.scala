@@ -21,13 +21,13 @@ class MethodDeclarationParser(val input: ParserInput) extends Parser with Base {
 
   def methodDeclarationActual = rule { name ~ wrappedParameters ~ ':' ~ OWS ~ identifier ~ OWS ~ '=' ~ ' ' }
 
-  def methodKeyword = rule { atomic("def") }
+  def methodKeyword: Rule0 = rule { atomic("def") }
 
-  def methodBody = rule { '{' ~ '}' }
+  def methodBody: Rule0 = rule { '{' ~ '}' }
 
-  def wrappedParameters = rule { '(' ~ parameters ~ ')' }
+  def wrappedParameters: Rule1[Seq[Parameter]] = rule { '(' ~ parameters ~ ')' }
 
-  def parameters = rule { zeroOrMore(parameter).separatedBy(',' ~ OWS) }
+  def parameters: Rule1[Seq[Parameter]] = rule { zeroOrMore(parameter).separatedBy(',' ~ OWS) }
 
   def parameter: Rule1[Parameter] = rule { name ~ ':' ~ OWS ~ identifier ~> Parameter }
 
