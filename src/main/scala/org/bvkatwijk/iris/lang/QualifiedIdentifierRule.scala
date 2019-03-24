@@ -9,9 +9,6 @@ trait QualifiedIdentifierRule { self: Parser with PackRule with IdentifierRule =
   }
 
   def optionalPackage: Rule1[Option[Pack]] = rule {
-    optional(packWithSeperator)
-  }
-  def packWithSeperator: Rule1[Pack] = rule {
-    pack ~ '.'
+    optional(packWithSeparator)
   }
 }
