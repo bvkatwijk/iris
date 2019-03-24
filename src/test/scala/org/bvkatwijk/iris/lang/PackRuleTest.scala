@@ -28,7 +28,17 @@ class PackRuleTest extends ParseTest {
       }
     }
     "denies" - {
-      "A" in deny("A")
+      "UPPERCASE" in deny("UPPERCASE")
+      "mixedCase" in deny("mixedCase")
+      "snake_case" in deny("snake_case")
+      "with spaces" in deny("with spaces")
+      "numb3rs" in deny("numb3rs")
+      "with..twodots" in deny("with..twodots")
+      ".starting.with.dot" in deny(".starting.with.dot")
+      "other#symbol" in deny("other#symbol")
+      "other,symbol" in deny("other,symbol")
+      "other;symbol" in deny("other;symbol")
+      "other:symbol" in deny("other:symbol")
     }
   }
 
@@ -38,8 +48,7 @@ class PackRuleTest extends ParseTest {
   def pack(value: String, result: Pack) = {
     run(value) should be(Right(result))
   }
-  def run(value: String) = new IsolatedParser()
-    .parse(new TestParser(value))(_.full)
 
+  def run(value: String) = new IsolatedParser().parse(new TestParser(value))(_.full)
   def deny(str: String) = compileError(run(str))
 }
