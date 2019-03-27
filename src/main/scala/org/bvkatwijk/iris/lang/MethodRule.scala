@@ -1,6 +1,6 @@
 package org.bvkatwijk.iris.lang
 
-import org.bvkatwijk.iris.ast.{MethodDeclaration, Parameter}
+import org.bvkatwijk.iris.ast.MethodDeclaration
 import org.parboiled2.{Parser, Rule0, Rule1}
 
 trait MethodRule { self: Parser with Base with NameRule with ParameterRule with QualifiedIdentifierRule =>
@@ -14,9 +14,9 @@ trait MethodRule { self: Parser with Base with NameRule with ParameterRule with 
     methodName ~ wrappedParameters ~ ':' ~ OWS ~ qualifiedIdentifier ~ OWS ~ '=' ~ ' '
   }
 
-  def methodBody: Rule0 = rule { '{' ~ '}' }
+  def wrappedMethodBody: Rule0 = rule { '{' ~ methodBody ~ '}' }
 
-  def wrappedParameters: Rule1[Seq[Parameter]] = rule { '(' ~ parameters ~ ')' }
+  def methodBody: Rule0 = rule { '{' ~ '}' }
 
   def methodParameter = parameter
 

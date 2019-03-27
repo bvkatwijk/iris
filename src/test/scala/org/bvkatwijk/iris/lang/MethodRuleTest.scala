@@ -5,7 +5,7 @@ import org.bvkatwijk.iris.ast.{MethodDeclaration, Parameter}
 import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2.{Parser, ParserInput}
 
-class MethodDeclarationParserTest extends ParseTest {
+class MethodRuleTest extends ParseTest {
   "method" - {
     "def a(b: C): D = {}" in {
       run("def a(b: C): D = {}") should be(Right(
