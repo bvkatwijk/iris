@@ -17,7 +17,4 @@ trait MethodRule { self: Parser with Base with NameRule with ParameterRule with 
   def wrappedMethodBody: Rule0 = rule { '{' ~ methodBody ~ '}' }
 
   def methodBody: Rule0 = rule { '{' ~ '}' }
-
-  def methodParameter = parameter
-
 }
