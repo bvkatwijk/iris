@@ -1,20 +1,21 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.ast.Parameter
-import org.bvkatwijk.iris.lang.MethodDeclarationParser.MethodDeclaration
+import org.bvkatwijk.iris.ast.{MethodDeclaration, Parameter}
+import org.bvkatwijk.iris.parser.IsolatedParser
+import org.parboiled2.{Parser, ParserInput}
 
 class MethodDeclarationParserTest extends ParseTest {
   "method" - {
     "def a(b: C): D = {}" in {
-      MethodDeclarationParser { "def a(b: C): D = {}" } should be(Right(
+      run("def a(b: C): D = {}") should be(Right(
         MethodDeclaration(
           "a",
           Seq(Parameter("b", qualifiedIdentifier("C"))),
           qualifiedIdentifier("D"))))
     }
     "def name(value: Type): ReturnType = {}" in {
-      MethodDeclarationParser { "def name(value: Type): ReturnType = {}" } should be(Right(
+      run("def name(value: Type): ReturnType = {}") should be(Right(
         MethodDeclaration(
           "name",
           Seq(Parameter("value", qualifiedIdentifier("Type"))),
@@ -52,8 +53,22 @@ class MethodDeclarationParserTest extends ParseTest {
         "can be three" in paramCount("one: Type, two: Type, three: Type", 3)
       }
     }
-    def methodDeclaration(value: String) = MethodDeclarationParser(value)
+    def methodDeclaration(value: String) = run(value)
   }
 
+  class TestParser(val input: ParserInput) extends Parser
+    with Base
+    with NameRule
+    with PackElementRule
+    with PackRule
+    with IdentifierRule
+    with QualifiedIdentifierRule
+    with ParameterRule
+    with MethodRule
+  {
+    def full = rule { methodDeclaration ~ EOI }
+  }
+
+  def run(value: String) = new IsolatedParser().parse(new TestParser(value))(_.full)
 
 }

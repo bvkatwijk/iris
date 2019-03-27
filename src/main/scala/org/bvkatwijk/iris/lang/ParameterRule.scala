@@ -8,6 +8,7 @@ trait ParameterRule { self: Parser with Base with NameRule with QualifiedIdentif
     name ~ ':' ~ OWS ~ qualifiedIdentifier ~> Parameter
   }
   def parameters: Rule1[Seq[Parameter]] = rule {
-    zeroOrMore(parameter).separatedBy(',' ~ OWS)
+    zeroOrMore(parameter).separatedBy(parameterSeparator)
   }
+  def parameterSeparator = rule { ',' ~ OWS }
 }
