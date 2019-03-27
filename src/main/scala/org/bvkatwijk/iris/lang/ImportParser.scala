@@ -10,9 +10,14 @@ object ImportParser {
   }
 }
 
-class ImportParser(val input: ParserInput) extends Parser with Base {
-
+class ImportParser(val input: ParserInput) extends Parser
+  with Base
+  with PackElementRule
+  with PackRule
+  with IdentifierRule
+  with QualifiedIdentifierRule
+{
   def importStatement: Rule1[Import] = rule {
-    (atomic("import") ~ ' ' ~ OWS ~ runSubParser { i => new IdentifierParser(i).qualifiedIdentifier } ~ ';') ~> Import
+    (atomic("import") ~ ' ' ~ OWS ~ qualifiedIdentifier ~ ';') ~> Import
   }
 }
