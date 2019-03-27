@@ -10,7 +10,7 @@ object IdentifierParser {
   }
 
   def identifier(input: ParserInput): Either[CompileError, Identifier] = {
-    new IsolatedParser().parse(new IdentifierParser(input))(_.captureIdentifier)
+    new IsolatedParser().parse(new IdentifierParser(input))(_.identifier)
   }
 }
 
