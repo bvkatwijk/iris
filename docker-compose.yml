@@ -1,0 +1,10 @@
+version: "3.5"
+
+services:
+  sbt:
+    image: hseeberger/scala-sbt
+    entrypoint: sbt
+    command: ~test
+    tty: true
+    volumes:
+      - .:/root
