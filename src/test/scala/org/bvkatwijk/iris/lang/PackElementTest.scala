@@ -21,6 +21,7 @@ class PackElementTest extends ParseTest {
     }
   }
 
+
   class LocalPackParser(val input: ParserInput) extends Parser with PackElementRule {
     def full = rule { packElement ~ EOI }
   }

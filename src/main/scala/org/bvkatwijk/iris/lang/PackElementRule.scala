@@ -7,4 +7,5 @@ trait PackElementRule { self: Parser =>
   def packElement: Rule1[PackageElement] = rule {
     capture(oneOrMore(CharPredicate.LowerAlpha)) ~> (PackageElement)
   }
+  def packageElementSeparator = rule { '.' }
 }

@@ -1,7 +1,9 @@
 package org.bvkatwijk.iris.lang
 
 import org.bvkatwijk.iris.ParseTest
-import org.bvkatwijk.iris.ast.{Identifier, QualifiedIdentifier};
+import org.bvkatwijk.iris.ast.{Identifier, QualifiedIdentifier}
+import org.bvkatwijk.iris.parser.IsolatedParser
+import org.parboiled2.{Parser, ParserInput};
 
 class IdentifierParserTest extends ParseTest {
   "qualifiedIdentifier" - {
@@ -29,9 +31,22 @@ class IdentifierParserTest extends ParseTest {
     "can't start with a number" in identifierError("1name")
   }
   def qi(value: String, expected: QualifiedIdentifier) = {
-    IdentifierParser(value) should be(Right(expected))
+    runQualifiedIdentifier(value) should be(Right(expected))
   }
   def testQualifiedIdentifier(value: String) = qi(value, qualifiedIdentifier(value))
-  def identifier(value: String) = IdentifierParser.identifier(value) should be(Right(Identifier(value)))
-  def identifierError(value: String) = compileError(IdentifierParser.identifier(value))
+  def identifier(value: String) = runIdentifier(value) should be(Right(Identifier(value)))
+  def identifierError(value: String) = compileError(runIdentifier(value))
+
+  class TestParser(val input: ParserInput) extends Parser
+    with IdentifierRule
+    with QualifiedIdentifierRule
+    with PackElementRule
+    with PackRule
+  {
+    def identifierEOI = rule { identifier ~ EOI }
+    def qualifiedIdentifierEOI = rule { qualifiedIdentifier ~ EOI }
+  }
+
+  def runIdentifier(value: String) = new IsolatedParser().parse(new TestParser(value))(_.identifierEOI)
+  def runQualifiedIdentifier(value: String) = new IsolatedParser().parse(new TestParser(value))(_.qualifiedIdentifierEOI)
 }
