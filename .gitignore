@@ -13,3 +13,5 @@ target/
 
 # SBT
 project/project
+.sbt
+.ivy2
