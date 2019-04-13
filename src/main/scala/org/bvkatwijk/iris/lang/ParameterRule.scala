@@ -7,11 +7,16 @@ trait ParameterRule { self: Parser with Base with NameRule with QualifiedIdentif
   def parameter: Rule1[Parameter] = rule {
     name ~ ':' ~ OWS ~ qualifiedIdentifier ~> Parameter
   }
+
   def parameters: Rule1[Seq[Parameter]] = rule {
     zeroOrMore(parameter).separatedBy(parameterSeparator)
   }
+
   def wrappedParameters: Rule1[Seq[Parameter]] = rule {
     '(' ~ parameters ~ ')'
   }
-  def parameterSeparator = rule { ',' ~ OWS }
+
+  def parameterSeparator = rule {
+    ',' ~ OWS
+  }
 }
