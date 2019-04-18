@@ -17,12 +17,17 @@ object CompilationUnitParser {
   }
 }
 
-class CompilationUnitParser(val input: ParserInput) extends Parser with Base {
+class CompilationUnitParser(val input: ParserInput) extends Parser
+  with Base
+  with PackElementRule
+  with PackRule
+  with IdentifierRule
+  with QualifiedIdentifierRule
+  with ImportRule
+{
   import CompilationUnitParser._
 
   def compilationUnit: Rule1[CompilationUnit] = rule { importSection ~ zeroOrMore(NL) ~ classDeclarations ~ EOI ~> (CompilationUnit) }
-
-  def importSection: Rule1[Seq[Import]] = rule { runSubParser { new ImportSectionParser(_).importSection } }
 
   def classDeclarations: Rule1[Seq[ClassDefinition]] = rule { zeroOrMore(classDeclaration).separatedBy(oneOrMore(NL)) }
 

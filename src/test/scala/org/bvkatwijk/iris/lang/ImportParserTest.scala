@@ -41,6 +41,33 @@ class ImportParserTest extends ParseTest {
     }
   }
 
+  "importSection" - {
+    def actual(value: String) = new IsolatedParser().parse(new LocalImportParser(value))(_.fullSection)
+    def importSection(value: String, imports: Seq[Import]) = actual(value) should be(Right(imports))
+    def deny(value: String) =  actual(value) should be('left)
+    "on Empty" - {
+      "creates empty seq" in importSection("", Seq())
+    }
+    "on Type" - {
+      "A" in importSection("import A;", Seq(Import(qualifiedIdentifier("A"))))
+      "B" in importSection("import B;", Seq(Import(qualifiedIdentifier("B"))))
+      "Type" in importSection( "import Type;", Seq(Import(qualifiedIdentifier("Type"))))
+    }
+    "on qualified Type" - {
+      "a.B" in importSection("import a.B;", Seq(Import(onePack("a", "B"))))
+      "a.C" in importSection("import a.C;", Seq(Import(onePack("a", "C"))))
+      "b.C" in importSection("import b.C;", Seq(Import(onePack("b", "C"))))
+      "pack.Type" in importSection("import pack.Type;", Seq(Import(onePack("pack", "Type"))))
+
+      "with multiple packages" - {
+        "a.b.C" in importSection("import a.b.C;", Seq(Import(twoPack("a", "b", "C"))))
+      }
+    }
+    "multiple imports" - {
+      "A; B" in importSection("import A;\nimport B;", Seq(Import(qualifiedIdentifier("A")), Import(qualifiedIdentifier("B"))))
+    }
+  }
+
   class LocalImportParser(val input: ParserInput) extends Parser
   with Base
   with PackElementRule
@@ -49,5 +76,6 @@ class ImportParserTest extends ParseTest {
   with QualifiedIdentifierRule
   with ImportRule {
     def full = rule { importStatement ~ EOI }
+    def fullSection = rule { importSection ~ EOI }
   }
 }
