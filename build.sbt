@@ -11,5 +11,5 @@ libraryDependencies ++= Seq(
   // Java Compilation and Exectution
   "net.openhft" % "compiler" % "2.3.4",
 
-  "org.scalatest" %% "scalatest" % "3.0.5" % Test,
+  "org.scalatest" %% "scalatest" % "3.2.2" % Test,
 )

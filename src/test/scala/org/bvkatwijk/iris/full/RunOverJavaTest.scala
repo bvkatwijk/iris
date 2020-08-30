@@ -2,9 +2,10 @@ package org.bvkatwijk.iris.full
 
 import net.openhft.compiler.CompilerUtils
 import org.bvkatwijk.iris.lang.ClassDefinitionParser
-import org.scalatest.{FreeSpec, Matchers}
+import org.scalatest.freespec.AnyFreeSpec
+import org.scalatest.matchers.should.Matchers
 
-class RunOverJavaTest extends FreeSpec with Matchers {
+class RunOverJavaTest extends AnyFreeSpec with Matchers {
   def compileAndRun(name: String, source: String): Invokable = {
     Invokable(CompilerUtils.CACHED_COMPILER
       .loadFromJava(name, irisToJava(source))

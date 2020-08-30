@@ -1,8 +1,8 @@
 package org.bvkatwijk.iris.ast
 
-import org.scalatest.{FreeSpec, Matchers}
+import org.bvkatwijk.iris.BaseSpec
 
-class ImportTest extends FreeSpec with Matchers {
+class ImportTest extends BaseSpec {
   "Import" - {
     "asStatement" - {
       "A" in { Import(QualifiedIdentifier.unqualified(Identifier("A"))).asStatement should be("import A;") }

@@ -1,8 +1,8 @@
 package org.bvkatwijk.iris.ast
 
-import org.scalatest.{FreeSpec, Matchers}
+import org.bvkatwijk.iris.BaseSpec
 
-class PackTest extends FreeSpec with Matchers {
+class PackTest extends BaseSpec {
   "Pack" - {
     "asStatement" - {
       "a" in { Pack(Seq(PackageElement("a"))).asStatement() should be("package a;") }

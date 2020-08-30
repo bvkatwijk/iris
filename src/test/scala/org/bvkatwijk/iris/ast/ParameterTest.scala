@@ -1,8 +1,8 @@
 package org.bvkatwijk.iris.ast
 
-import org.scalatest.{FreeSpec, Matchers}
+import org.bvkatwijk.iris.BaseSpec
 
-class ParameterTest extends FreeSpec with Matchers {
+class ParameterTest extends BaseSpec {
   "Parameter" - {
     "asJava" - {
       "a: B" in { Parameter.unqualified("a", "B").asJava should be("B a") }
