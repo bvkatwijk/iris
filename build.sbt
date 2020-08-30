@@ -6,7 +6,7 @@ version := "0.1.0"
 
 libraryDependencies ++= Seq(
   // Parsing
-  "org.parboiled" %% "parboiled" % "2.1.4",
+  "org.parboiled" %% "parboiled" % "2.2.0",
 
   // Java Compilation and Exectution
   "net.openhft" % "compiler" % "2.3.4",
