@@ -1,10 +1,12 @@
 package org.bvkatwijk.iris.ast
 
-import org.scalatest.{FreeSpec, Matchers}
+import org.bvkatwijk.iris.BaseSpec
 
-class PackElementTest extends FreeSpec with Matchers {
+class PackElementTest extends BaseSpec {
   "PackageElement" - {
-    "a" in { PackageElement("a").name should be("a") }
+    "a" in {
+      PackageElement("a").name should be("a")
+    }
   }
 
 }

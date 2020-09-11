@@ -18,6 +18,9 @@ class NameParserTest extends ParseTest {
   class LocalNameParser(val input: ParserInput) extends Parser with NameRule
 
   def name(value: String) = run(value) should be(Right(value))
-  def run(value: String) = new IsolatedParser().parse(new LocalNameParser(value))(_.name)
+
+  def run(value: String) =
+    new IsolatedParser().parse(new LocalNameParser(value))(_.name)
+
   def nameError(value: String) = compileError(run(value))
 }

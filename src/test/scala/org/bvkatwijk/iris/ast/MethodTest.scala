@@ -1,12 +1,16 @@
 package org.bvkatwijk.iris.ast
 
-import org.scalatest.{FreeSpec, Matchers}
+import org.bvkatwijk.iris.BaseSpec
 
-class MethodTest extends FreeSpec with Matchers {
+class MethodTest extends BaseSpec {
   "Method" - {
-    def subject(name: String) = MethodDeclaration(name, Seq(), QualifiedIdentifier(None, Identifier("a")))
+    def subject(name: String) =
+      MethodDeclaration(name, Seq(), QualifiedIdentifier(None, Identifier("a")))
+
     "name" - {
-      "a" in { subject("a").name should be("a") }
+      "a" in {
+        subject("a").name should be("a")
+      }
     }
   }
 }
