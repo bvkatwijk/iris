@@ -5,10 +5,21 @@ import org.bvkatwijk.iris.BaseSpec
 class PackTest extends BaseSpec {
   "Pack" - {
     "asStatement" - {
-      "a" in { Pack(Seq(PackageElement("a"))).asStatement() should be("package a;") }
-      "b" in { Pack(Seq(PackageElement("b"))).asStatement() should be("package b;") }
+      "a" in { Pack.fromString("a").asStatement() should be("package a;") }
+      "b" in { Pack.fromString("b").asStatement() should be("package b;") }
       "a.b" in { Pack(Seq(PackageElement("a"), PackageElement("b"))).asStatement() should be("package a.b;") }
     }
-  }
 
+    "asQualification" - {
+      "a" in { Pack.fromString("a").asQualification() should be("a") }
+      "b" in { Pack.fromString("b").asQualification() should be("b") }
+      "a.b" in { Pack(Seq(PackageElement("a"), PackageElement("b"))).asQualification() should be("a.b") }
+    }
+
+    "apply" - {
+      "a" in { Pack.fromString("a") should be(Pack(Seq(PackageElement("a")))) }
+      "b" in { Pack.fromString("b") should be(Pack(Seq(PackageElement("b")))) }
+      "a.b" in { Pack.fromString("a.b") should be(Pack(Seq(PackageElement("a"), PackageElement("b")))) }
+    }
+  }
 }
