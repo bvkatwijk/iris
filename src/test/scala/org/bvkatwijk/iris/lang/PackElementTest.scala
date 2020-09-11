@@ -21,15 +21,21 @@ class PackElementTest extends ParseTest {
     }
   }
 
-
-  class LocalPackParser(val input: ParserInput) extends Parser with PackElementRule {
-    def full = rule { packElement ~ EOI }
+  class LocalPackParser(val input: ParserInput)
+      extends Parser
+      with PackElementRule {
+    def full = rule {
+      packElement ~ EOI
+    }
   }
+
   def packElement(value: String) = {
     run(value) should be(Right(PackageElement(value)))
   }
-  def run(value: String) = new IsolatedParser()
-    .parse(new LocalPackParser(value))(_.full)
+
+  def run(value: String) =
+    new IsolatedParser()
+      .parse(new LocalPackParser(value))(_.full)
 
   def packElementCompileError(str: String) = compileError(run(str))
 }

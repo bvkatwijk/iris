@@ -20,7 +20,8 @@ class IdentifierParserTest extends ParseTest {
     }
     "on two packaged Type" - {
       "a.b.C" in qi("a.b.C", twoPack("a", "b", "C"))
-      "some.packaged.Type" in qi("some.packaged.Type", twoPack("some", "packaged", "Type"))
+      "some.packaged.Type" in qi("some.packaged.Type",
+                                 twoPack("some", "packaged", "Type"))
     }
   }
   "identifier" - {
@@ -30,23 +31,37 @@ class IdentifierParserTest extends ParseTest {
     "can't be a number" in identifierError("1")
     "can't start with a number" in identifierError("1name")
   }
+
   def qi(value: String, expected: QualifiedIdentifier) = {
     runQualifiedIdentifier(value) should be(Right(expected))
   }
-  def testQualifiedIdentifier(value: String) = qi(value, qualifiedIdentifier(value))
-  def identifier(value: String) = runIdentifier(value) should be(Right(Identifier(value)))
+
+  def testQualifiedIdentifier(value: String) =
+    qi(value, qualifiedIdentifier(value))
+
+  def identifier(value: String) =
+    runIdentifier(value) should be(Right(Identifier(value)))
+
   def identifierError(value: String) = compileError(runIdentifier(value))
 
-  class TestParser(val input: ParserInput) extends Parser
-    with IdentifierRule
-    with QualifiedIdentifierRule
-    with PackElementRule
-    with PackRule
-  {
-    def identifierEOI = rule { identifier ~ EOI }
-    def qualifiedIdentifierEOI = rule { qualifiedIdentifier ~ EOI }
+  class TestParser(val input: ParserInput)
+      extends Parser
+      with IdentifierRule
+      with QualifiedIdentifierRule
+      with PackElementRule
+      with PackRule {
+    def identifierEOI = rule {
+      identifier ~ EOI
+    }
+
+    def qualifiedIdentifierEOI = rule {
+      qualifiedIdentifier ~ EOI
+    }
   }
 
-  def runIdentifier(value: String) = new IsolatedParser().parse(new TestParser(value))(_.identifierEOI)
-  def runQualifiedIdentifier(value: String) = new IsolatedParser().parse(new TestParser(value))(_.qualifiedIdentifierEOI)
+  def runIdentifier(value: String) =
+    new IsolatedParser().parse(new TestParser(value))(_.identifierEOI)
+
+  def runQualifiedIdentifier(value: String) =
+    new IsolatedParser().parse(new TestParser(value))(_.qualifiedIdentifierEOI)
 }

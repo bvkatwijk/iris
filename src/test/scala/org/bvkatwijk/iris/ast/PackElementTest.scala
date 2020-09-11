@@ -4,7 +4,9 @@ import org.bvkatwijk.iris.BaseSpec
 
 class PackElementTest extends BaseSpec {
   "PackageElement" - {
-    "a" in { PackageElement("a").name should be("a") }
+    "a" in {
+      PackageElement("a").name should be("a")
+    }
   }
 
 }

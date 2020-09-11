@@ -8,27 +8,33 @@ import org.parboiled2.{Parser, ParserInput}
 class MethodRuleTest extends ParseTest {
   "method" - {
     "def a(b: C): D = {}" in {
-      run("def a(b: C): D = {}") should be(Right(
-        MethodDeclaration(
-          "a",
-          Seq(Parameter("b", qualifiedIdentifier("C"))),
-          qualifiedIdentifier("D"))))
+      run("def a(b: C): D = {}") should be(
+        Right(
+          MethodDeclaration("a",
+                            Seq(Parameter("b", qualifiedIdentifier("C"))),
+                            qualifiedIdentifier("D"))))
     }
     "def name(value: Type): ReturnType = {}" in {
-      run("def name(value: Type): ReturnType = {}") should be(Right(
-        MethodDeclaration(
-          "name",
-          Seq(Parameter("value", qualifiedIdentifier("Type"))),
-          qualifiedIdentifier("ReturnType"))))
+      run("def name(value: Type): ReturnType = {}") should be(
+        Right(
+          MethodDeclaration(
+            "name",
+            Seq(Parameter("value", qualifiedIdentifier("Type"))),
+            qualifiedIdentifier("ReturnType"))))
     }
     "keyword" - {
-      def methodKeyword(key: String)  = methodDeclaration(s"$key name(): B = {}").right.get.name should be("name")
+      def methodKeyword(key: String) =
+        methodDeclaration(s"$key name(): B = {}").right.get.name should be(
+          "name")
 
       "is def" in methodKeyword("def")
     }
     "name" - {
-      def name(name: String) = methodDeclaration(s"def $name(): B = {}").right.get.name should be(name)
-      def nameError(name: String) = compileError(methodDeclaration(s"def $name(): B = {}"))
+      def name(name: String) =
+        methodDeclaration(s"def $name(): B = {}").right.get.name should be(name)
+
+      def nameError(name: String) =
+        compileError(methodDeclaration(s"def $name(): B = {}"))
 
       "can be lowercase" in name("a")
       "can be long" in name("veryveryveryveryveryvery")
@@ -44,7 +50,9 @@ class MethodRuleTest extends ParseTest {
       "can't end with space" in nameError("spaceAfterName ")
     }
     "parameter" - {
-      def paramCount(params: String, expectedCount: Int) = methodDeclaration(s"def a($params): D = {}").right.get.parameters.length should be(expectedCount)
+      def paramCount(params: String, expectedCount: Int) =
+        methodDeclaration(s"def a($params): D = {}").right.get.parameters.length should be(
+          expectedCount)
 
       "amount" - {
         "can be zero" in paramCount("", 0)
@@ -53,22 +61,26 @@ class MethodRuleTest extends ParseTest {
         "can be three" in paramCount("one: Type, two: Type, three: Type", 3)
       }
     }
+
     def methodDeclaration(value: String) = run(value)
   }
 
-  class TestParser(val input: ParserInput) extends Parser
-    with Base
-    with NameRule
-    with PackElementRule
-    with PackRule
-    with IdentifierRule
-    with QualifiedIdentifierRule
-    with ParameterRule
-    with MethodRule
-  {
-    def full = rule { methodDeclaration ~ EOI }
+  class TestParser(val input: ParserInput)
+      extends Parser
+      with Base
+      with NameRule
+      with PackElementRule
+      with PackRule
+      with IdentifierRule
+      with QualifiedIdentifierRule
+      with ParameterRule
+      with MethodRule {
+    def full = rule {
+      methodDeclaration ~ EOI
+    }
   }
 
-  def run(value: String) = new IsolatedParser().parse(new TestParser(value))(_.full)
+  def run(value: String) =
+    new IsolatedParser().parse(new TestParser(value))(_.full)
 
 }
