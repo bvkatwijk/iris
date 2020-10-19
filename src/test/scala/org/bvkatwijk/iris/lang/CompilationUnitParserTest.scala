@@ -17,14 +17,20 @@ class CompilationUnitParserTest extends ParseTest {
       CompilationUnitParser {
         "import A;"
       } should be(
-        Right(new CompilationUnit(Seq(Import(qualifiedIdentifier("A"))))))
+        Right(new CompilationUnit(Seq(Import(qualifiedIdentifier("A")))))
+      )
     }
     "A; B" in {
       CompilationUnitParser {
         "import A;\nimport B;"
       } should be(
-        Right(new CompilationUnit(Seq(Import(qualifiedIdentifier("A")),
-                                      Import(qualifiedIdentifier("B"))))))
+        Right(
+          new CompilationUnit(
+            Seq(Import(qualifiedIdentifier("A")),
+                Import(qualifiedIdentifier("B")))
+          )
+        )
+      )
     }
     "a.A" in {
       CompilationUnitParser {
@@ -40,7 +46,9 @@ class CompilationUnitParserTest extends ParseTest {
       } should be(
         Right(
           new CompilationUnit(Seq(),
-                              Seq(ClassDefinition(qualifiedIdentifier("A"))))))
+                              Seq(ClassDefinition(qualifiedIdentifier("A"))))
+        )
+      )
     }
     "single B" in {
       CompilationUnitParser {
@@ -48,14 +56,19 @@ class CompilationUnitParserTest extends ParseTest {
       } should be(
         Right(
           new CompilationUnit(Seq(),
-                              Seq(ClassDefinition(qualifiedIdentifier("B"))))))
+                              Seq(ClassDefinition(qualifiedIdentifier("B"))))
+        )
+      )
     }
     "single Type" in {
       CompilationUnitParser {
         "class Type {}"
-      } should be(Right(
-        new CompilationUnit(Seq(),
-                            Seq(ClassDefinition(qualifiedIdentifier("Type"))))))
+      } should be(
+        Right(
+          new CompilationUnit(Seq(),
+                              Seq(ClassDefinition(qualifiedIdentifier("Type"))))
+        )
+      )
     }
   }
 
@@ -66,7 +79,9 @@ class CompilationUnitParserTest extends ParseTest {
       } should be(
         Right(
           new CompilationUnit(Seq(Import(qualifiedIdentifier("A"))),
-                              Seq(ClassDefinition(qualifiedIdentifier("B"))))))
+                              Seq(ClassDefinition(qualifiedIdentifier("B"))))
+        )
+      )
     }
     "import A and B, class C" in {
       CompilationUnitParser {
@@ -75,18 +90,23 @@ class CompilationUnitParserTest extends ParseTest {
         Right(
           new CompilationUnit(Seq(Import(qualifiedIdentifier("A")),
                                   Import(qualifiedIdentifier("B"))),
-                              Seq(ClassDefinition(qualifiedIdentifier("C"))))))
+                              Seq(ClassDefinition(qualifiedIdentifier("C"))))
+        )
+      )
     }
     "import A and B, class C and D" in {
       CompilationUnitParser {
         "import A;\nimport B;\n\nclass C {}\n\nclass D {}"
       } should be(
-        Right(new CompilationUnit(
-          Seq(Import(qualifiedIdentifier("A")),
-              Import(qualifiedIdentifier("B"))),
-          Seq(ClassDefinition(qualifiedIdentifier("C")),
-              ClassDefinition(qualifiedIdentifier("D")))
-        )))
+        Right(
+          new CompilationUnit(
+            Seq(Import(qualifiedIdentifier("A")),
+                Import(qualifiedIdentifier("B"))),
+            Seq(ClassDefinition(qualifiedIdentifier("C")),
+                ClassDefinition(qualifiedIdentifier("D")))
+          )
+        )
+      )
     }
   }
 

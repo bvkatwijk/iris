@@ -16,7 +16,8 @@ class ImportParserTest extends ParseTest {
       "unqualified" - {
         def unqualified(value: String) =
           actual(s"import $value;") should be(
-            Right(Import(qualifiedIdentifier(value))))
+            Right(Import(qualifiedIdentifier(value)))
+          )
 
         "A" in unqualified("A")
         "B" in unqualified("B")
@@ -31,7 +32,8 @@ class ImportParserTest extends ParseTest {
         "single" - {
           def single(pack: String, identifier: String) =
             actual("import " + pack + "." + identifier + ";") should be(
-              Right(Import(onePack(pack, identifier))))
+              Right(Import(onePack(pack, identifier)))
+            )
 
           "a.B" in single("a", "B")
           "a.C" in single("a", "C")
@@ -41,7 +43,8 @@ class ImportParserTest extends ParseTest {
         "multiple" - {
           "a.b.C" in {
             actual("import a.b.C;") should be(
-              Right(Import(twoPack("a", "b", "C"))))
+              Right(Import(twoPack("a", "b", "C")))
+            )
           }
         }
       }

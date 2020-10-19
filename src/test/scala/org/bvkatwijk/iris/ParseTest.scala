@@ -13,18 +13,18 @@ class ParseTest extends BaseSpec {
   def qualifiedIdentifier(name: String) =
     QualifiedIdentifier(None, Identifier(name))
 
-  def twoPack(first: String, second: String, identifier: String) = {
+  def twoPack(first: String, second: String, identifier: String) =
     QualifiedIdentifier(Some(
                           Pack(
                             Seq(
                               PackageElement(first),
                               PackageElement(second)
-                            ))),
+                            )
+                          )
+                        ),
                         Identifier(identifier))
-  }
 
-  def onePack(singlePack: String, identifier: String): QualifiedIdentifier = {
+  def onePack(singlePack: String, identifier: String): QualifiedIdentifier =
     QualifiedIdentifier(Some(Pack(Seq(PackageElement(singlePack)))),
                         Identifier(identifier))
-  }
 }

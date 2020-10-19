@@ -10,7 +10,6 @@ object IrisCompiler {
     val settings = processArguments(args)
   }
 
-  def processArguments(args: Array[String]): Seq[Setting] = {
+  def processArguments(args: Array[String]): Seq[Setting] =
     Seq()
-  }
 }

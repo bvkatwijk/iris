@@ -16,10 +16,12 @@ class ParameterRuleTest extends ParseTest {
                                   QualifiedIdentifier(None, Identifier("B"))))
       "name: Type" in accepts(
         "name: Type",
-        Parameter("name", QualifiedIdentifier(None, Identifier("Type"))))
+        Parameter("name", QualifiedIdentifier(None, Identifier("Type")))
+      )
       "no:Space" in accepts(
         "no:Space",
-        Parameter("no", QualifiedIdentifier(None, Identifier("Space"))))
+        Parameter("no", QualifiedIdentifier(None, Identifier("Space")))
+      )
     }
     "denies" - {
       ": MissingName" in deny(": MissingName")

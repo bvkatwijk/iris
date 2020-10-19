@@ -14,12 +14,11 @@ class QualifiedIdentifierSpec extends BaseSpec {
     }
 
     "one package" - {
-      def onePackage(pack: String, identifier: String) = {
+      def onePackage(pack: String, identifier: String) =
         QualifiedIdentifier(
           Some(Pack(Seq(PackageElement(pack)))),
           Identifier(identifier)
         ).asFull should be(pack + "." + identifier)
-      }
 
       "a.B" in onePackage("a", "B")
       "a.C" in onePackage("a", "C")
@@ -30,15 +29,18 @@ class QualifiedIdentifierSpec extends BaseSpec {
     "two packages" - {
       def twoPackages(firstPackageElement: String,
                       secondPackageElement: String,
-                      identifier: String) = {
+                      identifier: String) =
         QualifiedIdentifier(
           Some(
-            Pack(Seq(PackageElement(firstPackageElement),
-                     PackageElement(secondPackageElement)))),
+            Pack(
+              Seq(PackageElement(firstPackageElement),
+                  PackageElement(secondPackageElement))
+            )
+          ),
           Identifier(identifier)
         ).asFull should be(
-          firstPackageElement + "." + secondPackageElement + "." + identifier)
-      }
+          firstPackageElement + "." + secondPackageElement + "." + identifier
+        )
 
       "a.b.C" in twoPackages("a", "b", "C")
       "a.b.D" in twoPackages("a", "b", "D")

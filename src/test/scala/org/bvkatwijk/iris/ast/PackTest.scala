@@ -38,7 +38,8 @@ class PackTest extends BaseSpec {
     }
     "a.b" in {
       Pack.fromString("a.b") should be(
-        Pack(Seq(PackageElement("a"), PackageElement("b"))))
+        Pack(Seq(PackageElement("a"), PackageElement("b")))
+      )
     }
   }
 }

@@ -6,20 +6,19 @@ import org.scalatest.freespec.AnyFreeSpec
 import org.scalatest.matchers.should.Matchers
 
 class RunOverJavaTest extends AnyFreeSpec with Matchers {
-  def compileAndRun(name: String, source: String): Invokable = {
+  def compileAndRun(name: String, source: String): Invokable =
     Invokable(
       CompilerUtils.CACHED_COMPILER
         .loadFromJava(name, irisToJava(source))
         .getDeclaredConstructor()
-        .newInstance())
-  }
+        .newInstance()
+    )
 
   case class Invokable(sourceObject: Any) {
-    def invoke(methodName: String): Object = {
+    def invoke(methodName: String): Object =
       sourceObject.getClass
         .getDeclaredMethod(methodName)
         .invoke(sourceObject)
-    }
   }
 
   def irisToJava(iris: String): String = {

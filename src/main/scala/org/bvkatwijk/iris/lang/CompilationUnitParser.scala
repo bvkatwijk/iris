@@ -9,15 +9,13 @@ object CompilationUnitParser {
 
   case class CompilationUnit(imports: Seq[Import] = Seq(),
                              classes: Seq[ClassDefinition] = Seq()) {
-    def toJava: String = {
+    def toJava: String =
       "Hello world"
-    }
   }
 
-  def apply(input: ParserInput): Either[CompileError, CompilationUnit] = {
+  def apply(input: ParserInput): Either[CompileError, CompilationUnit] =
     new IsolatedParser()
       .parse(new CompilationUnitParser(input))(_.compilationUnit)
-  }
 }
 
 class CompilationUnitParser(val input: ParserInput)

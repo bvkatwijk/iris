@@ -8,10 +8,9 @@ object ConstructorDeclarationParser {
 
   case class Constructor(parameters: Seq[Parameter])
 
-  def apply(input: ParserInput): Either[CompileError, Constructor] = {
+  def apply(input: ParserInput): Either[CompileError, Constructor] =
     new IsolatedParser()
       .parse(new ConstructorDeclarationParser(input))(_.constructorDefinition)
-  }
 }
 
 class ConstructorDeclarationParser(val input: ParserInput)

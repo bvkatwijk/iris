@@ -12,7 +12,9 @@ class MethodRuleTest extends ParseTest {
         Right(
           MethodDeclaration("a",
                             Seq(Parameter("b", qualifiedIdentifier("C"))),
-                            qualifiedIdentifier("D"))))
+                            qualifiedIdentifier("D"))
+        )
+      )
     }
     "def name(value: Type): ReturnType = {}" in {
       run("def name(value: Type): ReturnType = {}") should be(
@@ -20,12 +22,16 @@ class MethodRuleTest extends ParseTest {
           MethodDeclaration(
             "name",
             Seq(Parameter("value", qualifiedIdentifier("Type"))),
-            qualifiedIdentifier("ReturnType"))))
+            qualifiedIdentifier("ReturnType")
+          )
+        )
+      )
     }
     "keyword" - {
       def methodKeyword(key: String) =
         methodDeclaration(s"$key name(): B = {}").right.get.name should be(
-          "name")
+          "name"
+        )
 
       "is def" in methodKeyword("def")
     }
@@ -52,7 +58,8 @@ class MethodRuleTest extends ParseTest {
     "parameter" - {
       def paramCount(params: String, expectedCount: Int) =
         methodDeclaration(s"def a($params): D = {}").right.get.parameters.length should be(
-          expectedCount)
+          expectedCount
+        )
 
       "amount" - {
         "can be zero" in paramCount("", 0)

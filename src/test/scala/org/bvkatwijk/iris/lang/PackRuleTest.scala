@@ -34,7 +34,8 @@ class PackRuleTest extends ParseTest {
                Pack(
                  Seq(PackageElement(first),
                      PackageElement(second),
-                     PackageElement(third))))
+                     PackageElement(third))
+               ))
 
         "a.b.c" in triple("a.b.c", "a", "b", "c")
         "first.second.third" in triple("first.second.third",
@@ -67,9 +68,8 @@ class PackRuleTest extends ParseTest {
     }
   }
 
-  def pack(value: String, result: Pack) = {
+  def pack(value: String, result: Pack) =
     run(value) should be(Right(result))
-  }
 
   def run(value: String) =
     new IsolatedParser().parse(new TestParser(value))(_.full)

@@ -8,7 +8,8 @@ trait ParameterRule {
   def parameter: Rule1[Parameter] = rule {
     name ~ ':' ~ OWS ~ qualifiedIdentifier ~> (
         (name: String,
-         typeValue: QualifiedIdentifier) => Parameter(name, typeValue))
+         typeValue: QualifiedIdentifier) => Parameter(name, typeValue)
+    )
   }
 
   def parameters: Rule1[Seq[Parameter]] = rule {

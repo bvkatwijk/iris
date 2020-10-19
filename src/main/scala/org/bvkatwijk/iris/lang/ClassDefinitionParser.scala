@@ -5,10 +5,9 @@ import org.bvkatwijk.iris.parser.IsolatedParser
 import org.parboiled2._
 
 object ClassDefinitionParser {
-  def apply(input: ParserInput): Either[CompileError, ClassDefinition] = {
+  def apply(input: ParserInput): Either[CompileError, ClassDefinition] =
     new IsolatedParser()
       .parse(new ClassDefinitionParser(input))(_.classDefinition)
-  }
 }
 
 class ClassDefinitionParser(val input: ParserInput)
@@ -20,7 +19,8 @@ class ClassDefinitionParser(val input: ParserInput)
     with QualifiedIdentifierRule {
   def classDefinition: Rule1[ClassDefinition] = rule {
     atomic("class") ~ ' ' ~ qualifiedIdentifier ~ optional(
-      constructorDefinition) ~ ' ' ~ '{' ~ '}' ~> (ClassDefinition)
+      constructorDefinition
+    ) ~ ' ' ~ '{' ~ '}' ~> (ClassDefinition)
   }
 
   def constructorDefinition = rule {
