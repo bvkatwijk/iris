@@ -32,9 +32,8 @@ class IdentifierParserTest extends ParseTest {
     "can't start with a number" in identifierError("1name")
   }
 
-  def qi(value: String, expected: QualifiedIdentifier) = {
+  def qi(value: String, expected: QualifiedIdentifier) =
     runQualifiedIdentifier(value) should be(Right(expected))
-  }
 
   def testQualifiedIdentifier(value: String) =
     qi(value, qualifiedIdentifier(value))

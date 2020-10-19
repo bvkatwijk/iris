@@ -29,9 +29,8 @@ class PackElementTest extends ParseTest {
     }
   }
 
-  def packElement(value: String) = {
+  def packElement(value: String) =
     run(value) should be(Right(PackageElement(value)))
-  }
 
   def run(value: String) =
     new IsolatedParser()

@@ -5,5 +5,6 @@ case class Parameter(name: String, typeValue: QualifiedIdentifier) {
 }
 
 object Parameter {
-  def unqualified(name: String, identifier: String): Parameter = Parameter(name, QualifiedIdentifier(None, Identifier(identifier)))
+  def unqualified(name: String, identifier: String): Parameter =
+    Parameter(name, QualifiedIdentifier(None, Identifier(identifier)))
 }

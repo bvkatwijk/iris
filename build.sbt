@@ -12,4 +12,5 @@ lazy val root = (project in file("."))
       "org.parboiled" %% "parboiled" % "2.2.0",
       "net.openhft" % "compiler" % "2.3.4",
       "org.scalatest" %% "scalatest" % "3.2.2" % "it,test"
-    ))
+    )
+  )

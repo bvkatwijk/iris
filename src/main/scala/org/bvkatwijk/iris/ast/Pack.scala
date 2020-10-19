@@ -14,5 +14,6 @@ object Pack {
     Pack(
       packageString
         .split("\\.")
-        .map(PackageElement(_)))
+        .map(PackageElement(_))
+    )
 }

@@ -6,7 +6,8 @@ trait NameRule {
   self: Parser =>
   def name: Rule1[String] = rule {
     capture(
-      oneOrMore(CharPredicate.LowerAlpha) ~ zeroOrMore(CharPredicate.Alpha))
+      oneOrMore(CharPredicate.LowerAlpha) ~ zeroOrMore(CharPredicate.Alpha)
+    )
   }
 
   def methodName: Rule1[String] = rule {

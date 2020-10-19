@@ -11,26 +11,31 @@ class ConstructorDeclarationParserTest extends ParseTest {
         ConstructorDeclarationParser {
           "(a: B)"
         } should be(
-          Right(Constructor(Seq(Parameter("a", qualifiedIdentifier("B"))))))
+          Right(Constructor(Seq(Parameter("a", qualifiedIdentifier("B")))))
+        )
       }
       "(a: C)" in {
         ConstructorDeclarationParser {
           "(a: C)"
         } should be(
-          Right(Constructor(Seq(Parameter("a", qualifiedIdentifier("C"))))))
+          Right(Constructor(Seq(Parameter("a", qualifiedIdentifier("C")))))
+        )
       }
       "(b: C)" in {
         ConstructorDeclarationParser {
           "(b: C)"
         } should be(
-          Right(Constructor(Seq(Parameter("b", qualifiedIdentifier("C"))))))
+          Right(Constructor(Seq(Parameter("b", qualifiedIdentifier("C")))))
+        )
       }
       "(name: Type)" in {
         ConstructorDeclarationParser {
           "(name: Type)"
         } should be(
           Right(
-            Constructor(Seq(Parameter("name", qualifiedIdentifier("Type"))))))
+            Constructor(Seq(Parameter("name", qualifiedIdentifier("Type"))))
+          )
+        )
       }
     }
     "multiple parameters" - {
@@ -38,8 +43,13 @@ class ConstructorDeclarationParserTest extends ParseTest {
         ConstructorDeclarationParser {
           "(a: B, c: D)"
         } should be(
-          Right(Constructor(Seq(Parameter("a", qualifiedIdentifier("B")),
-                                Parameter("c", qualifiedIdentifier("D"))))))
+          Right(
+            Constructor(
+              Seq(Parameter("a", qualifiedIdentifier("B")),
+                  Parameter("c", qualifiedIdentifier("D")))
+            )
+          )
+        )
       }
       "(one: Type, other: OtherType)" in {
         ConstructorDeclarationParser {
@@ -48,7 +58,10 @@ class ConstructorDeclarationParserTest extends ParseTest {
           Right(
             Constructor(
               Seq(Parameter("one", qualifiedIdentifier("Type")),
-                  Parameter("other", qualifiedIdentifier("OtherType"))))))
+                  Parameter("other", qualifiedIdentifier("OtherType")))
+            )
+          )
+        )
       }
     }
   }
